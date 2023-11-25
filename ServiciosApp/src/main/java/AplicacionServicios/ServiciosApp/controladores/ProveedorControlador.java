@@ -1,0 +1,125 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package AplicacionServicios.ServiciosApp.controladores;
+
+import AplicacionServicios.ServiciosApp.entidades.Proveedor;
+import AplicacionServicios.ServiciosApp.entidades.Resenia;
+import AplicacionServicios.ServiciosApp.entidades.Usuario;
+import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
+import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
+import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
+import AplicacionServicios.ServiciosApp.repositorios.ProveedorRepositorio;
+import AplicacionServicios.ServiciosApp.servicios.ProveedorServicio;
+import AplicacionServicios.ServiciosApp.servicios.ReseniaServicio;
+import java.util.Arrays;
+import java.util.List;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+/**
+ *
+ * @author tobia
+ */
+@Controller
+@RequestMapping("/proveedor")
+public class ProveedorControlador {
+
+    @Autowired
+    private ProveedorServicio proveedorServicio;
+
+    @Autowired
+    private ProveedorRepositorio proveedorRepositorio;
+    
+    @Autowired
+    private ReseniaServicio reseniaServicio;
+
+    @PostMapping("/registroProveedor")
+    public String registroProveedor(MultipartFile archivo, @RequestParam String nombre,
+            @RequestParam String email, @RequestParam String password, @RequestParam String password2, @RequestParam(required = false) Long telefono,
+            @RequestParam Profesion profesion1, @RequestParam ProfesionExtra profesion2, ModelMap modelo) {
+
+        try {
+            proveedorServicio.crearProveedor(archivo, nombre, email, password, password2, profesion1, profesion2, telefono);
+            modelo.put("exito", "Proveedor registrado correctamente");
+        } catch (MiExcepcion e) {
+            modelo.put("error", e.getMessage());
+            modelo.put("nombre", nombre);
+            modelo.put("email", email);
+            return "redirect:/registrar";
+        }
+        return "redirect:/login";
+    }
+
+    @GetMapping("/actualizarProveedor/{id}")
+    public String actualizarProveedor(@PathVariable String id, ModelMap modelo) {
+        List<Profesion> profesiones = Arrays.asList(Profesion.values());
+        modelo.put("profesiones", profesiones);
+        List<ProfesionExtra> profesionesExtra = Arrays.asList(ProfesionExtra.values());
+        modelo.put("profesionesExtra", profesionesExtra);
+        Proveedor proveedor = proveedorRepositorio.getOne(id);
+        modelo.put("proveedor", proveedor);
+
+        return "proveedor_modificar.html";
+    }
+
+    @PostMapping("/actualizandoProveedor/{idProveedor}")
+    public String actualizandoProveedor(@RequestParam MultipartFile archivo, @PathVariable String idProveedor, @RequestParam String nombre,
+            @RequestParam String email, @RequestParam String password,
+            @RequestParam String password2, @RequestParam Profesion profesion,
+            @RequestParam(required = false) ProfesionExtra profesion2, @RequestParam Long telefono,ModelMap modelo) {
+        try {
+            proveedorServicio.actualizarProovedor(archivo, idProveedor, nombre, email, password, password2, profesion, profesion2, telefono);
+        } catch (MiExcepcion ex) {
+        modelo.put("error", ex.getMessage());
+        List<Profesion> profesiones = Arrays.asList(Profesion.values());
+        modelo.put("profesiones", profesiones);
+        List<ProfesionExtra> profesionesExtra = Arrays.asList(ProfesionExtra.values());
+        modelo.put("profesionesExtra", profesionesExtra);
+        modelo.put("proveedor", proveedorServicio.getOne(idProveedor));
+           return "proveedor_modificar.html";
+        }
+        modelo.put("exito", "actualizado con exito");
+        return "redirect:/inicio";
+    }
+    
+
+    @GetMapping("/cambiarRol/{id}")
+    public String cambiarRol(@PathVariable String id, ModelMap modelo) {
+      
+        try {
+            proveedorServicio.proveedorACliente(id);
+            modelo.put("exito", "cambio exitoso");
+            return "usuario_perfil.html";  // cuando este el perfil de usuario cambiar 
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+          return "proveedor_perfil.html";
+        }
+    }
+    
+
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO','ROLE_ADMIN','ROLE_PROVEEDOR')")
+    @GetMapping("/perfilProveedor/{id}")
+    public String perfil(ModelMap modelo, HttpSession session, @PathVariable String id) {
+
+        List<Resenia> resenias = reseniaServicio.buscarPorProveedorId(id);
+        modelo.put("resenias", resenias);
+        Proveedor proveedor = proveedorServicio.getOne(id);
+        modelo.put("proveedor", proveedor);
+
+        return "proveedor_perfil.html";
+
+    }
+
+}

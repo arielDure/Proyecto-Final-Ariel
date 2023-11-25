@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Diagrama de clases">
+  <ClassDiagramComponents>
+    <Class name="Usuario" package="" visibility="public" xPosition="367.0" yPosition="45.0">
+      <Fields>
+        <Field name="id" type="String" visibility="private"/>
+        <Field name="nombreUsuario" type="String" visibility="private"/>
+        <Field name="pasword" type="String" visibility="private"/>
+        <Field name="rol" type="Rol" visibility="private"/>
+        <Field name="activo" type="Boolean" visibility="private"/>
+        <Field name="imagen" type="Imagen" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Proveedor" package="" visibility="public" xPosition="335.0" yPosition="521.0">
+      <Fields>
+        <Field name="profesion" type="Profesion" visibility="private"/>
+        <Field name="telefono" type="Long" visibility="private"/>
+        <Field name="resenias" type="List" visibility="private"/>
+        <Field name="contactos" type="Long" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Resenia" package="" visibility="public" xPosition="546.0" yPosition="287.0">
+      <Fields>
+        <Field name="id" type="String" visibility="private"/>
+        <Field name="idUsuario" type="Usuario" visibility="private"/>
+        <Field name="idProveedor" type="Proveedor" visibility="private"/>
+        <Field name="cuerpo" type="String" visibility="private"/>
+        <Field name="calificacion" type="Integer" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Imagen" package="" visibility="public" xPosition="38.0" yPosition="287.0">
+      <Fields>
+        <Field name="id" type="String" visibility="private"/>
+        <Field name="mime" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="untitledMethod" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="tiene" source="Resenia" target="Proveedor" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Proveedor" target="Usuario"/>
+    <HasRelation name="contiene" source="Proveedor" target="Imagen" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="tiene" source="Resenia" target="Usuario" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="contiene" source="Usuario" target="Imagen" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

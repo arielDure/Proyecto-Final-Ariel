@@ -1,0 +1,67 @@
+.fondo{
+    background-image: url(/img/fondo.jpg);
+    background-size:cover;
+    text-align: right;
+    color: rgb(255, 255, 255);
+}
+.titulo{
+    color: rgb(255, 255, 255);
+    text-align:center;
+    font-family:'agbalumo';
+    font-size: 10vh;
+}
+.subtitulo{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align:center;
+    color:rgb(255, 255, 255);
+    font-size: 5vh;
+}
+.containerFooter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.parrafo{
+    font-family: 'agbalumo';
+    color: rgb(253, 253, 253);
+}
+.iconos{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: auto;
+    justify-content: center;
+}
+.plomero{
+    display: flex;
+    justify-content: center;
+}
+.cards{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+.cardsSub{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+    padding: 10px; /* Añadí "px" para especificar unidades en píxeles */
+    align-items: center;
+    justify-content: center;
+}
+.imagenPerfil img{
+    display: flex;
+    min-width: 20vh;
+    max-width: 20vh;
+
+}
+
+.user-name-style{
+    font-family: 'agbalumo';
+    font-weight: bold;
+    color: black ;  
+}

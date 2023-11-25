@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Service-app</title>
+    <!--<link rel="stylesheet" href="/src/main/resources/static/css/index.css">-->
+    <link rel="stylesheet" href="/css/listas.css">
+    </head>
+
+    <body>
+        <nav th:replace="/fragments/navbar_all :: nav"></nav>
+        <br>
+        <div class="vistalista" >
+
+            <table class="table table-dark">
+                <thead class="align-items-center">
+                    <tr >
+                        <th scope="col" sec:authorize="hasRole('ADMIN')">Id del Proveedor</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Foto de Perfil</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Profesion 1</th>
+                        <th scope="col">Profesion 2</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Contrataciones</th>
+                        <th scope="col">Reseñas</th>
+                        <th scope="col"  sec:authorize="hasRole('ADMIN')">Cambiar Rol</th>
+                        <th scope="col"  sec:authorize="hasRole('ADMIN')">Modificar</th>
+                        <th scope="col">Detalle</th>
+
+                    </tr>
+                </thead>
+                <tbody th:each="proveedor : ${proveedores}"> 
+                    <tr>
+                        <th scope="row" sec:authorize="hasRole('ADMIN')" th:text="${proveedor.id}"></th>
+                        <td th:text="${proveedor.nombre}"></td>
+                        <td class="imagen">
+                            <a><img th:if="${proveedor.imagen != null}" class="logo" th:src="@{/imagen/perfilProveedor/__${proveedor.id}__}" ></a>
+                        </td>
+
+                        <td th:text="${proveedor.rol}"></td>
+                        <td th:text="${proveedor.profesion1}"></td>
+                        <td th:text="${proveedor.profesion2}"></td>
+                        <td th:text="${proveedor.telefono}"></td>
+                        <td th:text="${proveedor.contactos}"></td>
+                        <td>
+                            <a th:href= "@{/admin/resenia/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i>Reseñas</a>
+                        </td>
+                       <td sec:authorize="hasRole('ADMIN')">
+                            <a th:href= "@{/proveedor/cambiarRolProveedor/__${proveedor.id}__}"><i class="fas fa-feather-alt"  ></i>Cambiar</a>
+                        </td>
+
+                        <td sec:authorize="hasRole('ADMIN')">
+                        <a th:href= "@{/proveedor/actualizarProveedor/__${proveedor.id}__}"><i class="fas fa-feather-alt" ></i> Modificar</a>
+                        </td> 
+                        
+                        
+                        <td>
+                            <a th:href= "@{/proveedor/perfilProveedor/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i>Detalles</a>
+                        </td> 
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <div th:replace="/fragments/error :: div"></div>
+
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <a th:href="@{/admin/dashboard}" class="btn btn-primary my-2">Volver</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <footer th:replace="/fragments/footer :: footer"></footer>
+        <div th:replace="/fragments/script :: div"></div>
+
+    </body>
+
+</html>

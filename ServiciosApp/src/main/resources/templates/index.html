@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head">
+
+</head>
+<!--pasé los links de estilo al head-->
+
+<body>
+    <div th:replace="/fragments/navbar_all :: div"></div>
+    <div th:replace="/fragments/error :: div"></div>
+    <br>
+    <header class="head">
+        <h1 class="titulo">Web Services</h1>
+        <br><br>
+        <p class="subtitulo"><strong>Bienvenidos a la pagina de proveedores <BR>de Servicios de la
+                localidad</strong> <BR><strong class="parrafo">CHACRAS DE CORIA
+            </strong>
+        </p>
+       
+    </header>
+    <br>
+     <!--Estan los servicios en forma de cards-->
+     <div th:replace="/fragments/prov_cards :: div" class="card"></div>
+     <!--Debajo estan las imágenes-->
+    <div class="iconos">
+        <img src="/img/icono_plomero.png" alt="plomero" width="80" height="60" class="plomero">
+        <img src="/img/icono_albanil.png" alt="plomero" width="80" height="60" class="plomero">
+        <img src="/img/icono_pintor.png" alt="plomero" width="80" height="60" class="plomero">
+        <img src="/img/icono_electricista.png" alt="plomero" width="80" height="60" class="plomero">
+    </div>
+    
+    
+    <footer th:replace="/fragments/footer :: footer"></footer>
+    <div th:replace="/fragments/script :: div"></div>
+</body>
+
+</html>

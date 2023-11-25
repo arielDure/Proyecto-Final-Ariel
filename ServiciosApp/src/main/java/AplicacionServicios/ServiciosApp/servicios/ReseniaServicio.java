@@ -1,0 +1,120 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package AplicacionServicios.ServiciosApp.servicios;
+
+import AplicacionServicios.ServiciosApp.entidades.Proveedor;
+import AplicacionServicios.ServiciosApp.entidades.Resenia;
+import AplicacionServicios.ServiciosApp.entidades.Usuario;
+import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
+import AplicacionServicios.ServiciosApp.repositorios.ReseniaRepositorio;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ *
+ * @author tobia
+ */
+@Service
+public class ReseniaServicio {
+
+    @Autowired
+    private ReseniaRepositorio reseniaRepositorio;
+
+    @Transactional
+    public void crearResenia(Usuario usuario, Proveedor proveedor, String cuerpo, Integer calificacion) throws MiExcepcion{
+
+        validar(cuerpo, calificacion);
+        
+        Resenia resenia = new Resenia();
+        
+        resenia.setIdUsuario(usuario);
+        resenia.setIdProveedor(proveedor);
+        resenia.setCuerpo(cuerpo);
+        resenia.setCalificacion(calificacion);
+       
+       
+        resenia.setFecha(new Date());
+
+        reseniaRepositorio.save(resenia);
+
+    }
+
+    public List<Resenia> listarResenias() {
+        List<Resenia> resenias = new ArrayList();
+        resenias = reseniaRepositorio.findAll();
+        return resenias;
+    }
+    
+    @Transactional
+    public void actualizarResenia(String idResenia, String cuerpo, Integer calificacion, Usuario idUsuario, Proveedor idProveedor) throws MiExcepcion {
+
+        validar(cuerpo, calificacion);
+
+        Optional<Resenia> respuesta = reseniaRepositorio.findById(idResenia);
+
+        if (respuesta.isPresent()) {
+
+            Resenia resenia = respuesta.get();
+            resenia.setCalificacion(calificacion);
+            resenia.setCuerpo(cuerpo);
+            resenia.setFecha(new Date());
+            
+            reseniaRepositorio.save(resenia);
+        }
+        
+    }
+    
+    @Transactional
+    public void borrarReseniaPorID(String idResenia) {
+
+        Optional<Resenia> respuesta = reseniaRepositorio.findById(idResenia);
+
+        if (respuesta.isPresent()) {
+            reseniaRepositorio.deleteById(idResenia);
+        }
+
+    }
+    
+    
+    public void validar(String cuerpo, Integer calificacion) throws MiExcepcion {
+
+       
+        if (cuerpo.isEmpty() || cuerpo == null) {
+            throw new MiExcepcion("El cuerpo no puede estar vacío, o ser nulo");
+        }
+        if (calificacion == null) {
+            throw new MiExcepcion("La calificacion no puede ser nula o no estar comprendida entre 1 y 5");
+        }
+    }
+    
+    public List<Resenia> buscarPorUsuarioId(String idUsuario){
+      List<Resenia> resenias= reseniaRepositorio.findAll();
+      List<Resenia> reseniasDevolver= new ArrayList();
+        for (Resenia resenia : resenias) {
+            if(resenia.getIdUsuario().getId().equals(idUsuario)){
+                reseniasDevolver.add(resenia);
+            }
+        }
+        return reseniasDevolver;
+    }
+    
+    public List<Resenia> buscarPorProveedorId(String idProveedor){
+      List<Resenia> resenias= reseniaRepositorio.findAll();
+      List<Resenia> reseniasDevolver= new ArrayList();
+        for (Resenia resenia : resenias) {
+            if(resenia.getIdProveedor().getId().equals(idProveedor)){
+                reseniasDevolver.add(resenia);
+            }
+        }
+        return reseniasDevolver;
+    }
+}

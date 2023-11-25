@@ -1,0 +1,15 @@
+.imagen img{
+    min-width: 7vh;
+    max-width: 7vh;
+}
+.vistalista{
+    margin-left: 5vh;
+    margin-right: 5vh;
+}
+td{
+    
+    text-align: center;
+    position: relative;
+    width: 10vh;
+    height: 10vh;
+}

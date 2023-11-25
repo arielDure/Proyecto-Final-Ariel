@@ -1,0 +1,44 @@
+<div>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Iterar sobre cada proveedor para crear un carousel-item por proveedor -->
+            <div class="carousel-item" th:each="proveedor, iterStat : ${proveedores}"
+                th:classappend="${iterStat.index == 0} ? 'active'">
+                <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                    <img class="card-img-top" th:src="@{/imagen/perfilProveedor/__${proveedor.id}__}"
+                        style="height: 20vh; width: 20vh; justify-content: center;" alt="imagen_proveedor">
+                    <div class="card-body">
+                        <h3 class="card-title" th:text="${proveedor.nombre}"></h3>
+                    </div>
+                    <ul class="list-group list-group-flush" >
+                        <li class="list-group-item" style="background-color: rgba(141, 141, 255, 0);">Profesión: <span th:text="${proveedor.profesion1}"></span></li>
+                        <li class="list-group-item"style="background-color: rgba(141, 141, 255, 0);">Profesión Extra: <span th:text="${proveedor.profesion2}"></span>
+                        </li>
+                        <li class="list-group-item"style="background-color: rgba(141, 141, 255, 0);">Calificación: <span></span></li>
+                    </ul>
+                    <br>
+                    <div class="card-body">
+                        <a th:if="${session.usuariosession != null}"
+                            th:href="@{/proveedor/perfilProveedor/__${proveedor.id}__}"
+                            class="btn btn-primary">Detalle</a>
+                        <div th:if="${session.usuariosession == null}">
+                            <p>Para ver el proveedor en detalle <a class="btn btn-primary"
+                                    th:if="${session.usuariosession == null}" th:href="@{/login}">logueate!</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Botones de control del carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>

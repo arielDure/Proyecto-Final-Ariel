@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service-app</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/perfil.css">
+</head>
+
+<body>
+
+    <main>
+    <div th:replace="/fragments/navbar_all :: div"></div>
+    <div class="principal">
+        <div class="imagen">
+           <img th:src="@{/imagen/perfilProveedor/__${proveedor.id}__}" alt="Imagen_proveedor">
+
+        </div>
+        <div class="container-datos">
+            <div class="datos">
+                <div class="miPerfil"> 
+                <h2 th:if="${session.usuariosession.id == proveedor.id}" style="color: #3498db"> Mi Perfil</h2>
+                <button class="btn btn-primary mt-3 botones" th:if="${session.usuariosession.id == proveedor.id}"><a th:href="@{/proveedor/actualizarProveedor/__${proveedor.id}__}" style="text-decoration: none;color: inherit; ">Editar mi perfil</a></button>
+                <button class="btn btn-primary mt-3 botones" th:if="${session.usuariosession.id == proveedor.id}"><a th:href="@{/proveedor/cambiarRol/__${proveedor.id}__}" style="text-decoration: none;color: inherit; ">Cambiar Rol</a></button>
+                <!--   TODAVIA NO FUNCA EL CAMBIAR ROL-->
+                </div>
+               
+                <h2><span th:text="${proveedor.nombre}"></span> </h2>
+                <h3><span th:text="${proveedor.profesion1}"></span></h3>
+                <h3><span th:text="${proveedor.profesion2}"></span></h3>
+                <h3><span th:text="${proveedor.telefono}"></span></h3>
+                <p>Ejemplo de descripcion: Plomero con amplia experiencia en instalación, 
+                    reparación y mantenimiento de sistemas de fontanería. Especializado en identificar y resolver 
+                    eficientemente problemas de tuberías, grifos y desagües. Comprometido con la satisfacción del cliente y la calidad del trabajo.</p>
+            </div>
+            <div class="botones">
+                <button class="btn btn-primary mt-3 botones">Chat</button>
+                <button class="btn btn-primary mt-3 botones">Contratar</button>
+                <button class="btn btn-primary mt-3 botones">Trabajo finalizado</button>
+               
+            </div>
+        </div>
+    </div>
+    <div class="separacion">
+    <h3>Reseñas de Usuarios</h3>
+    </div>
+    <div class="container-article">
+        
+        <article th:each="resenia : ${resenias}">
+            <div class="carta">
+    
+                <div class="top">
+                    <div class="top-izq">
+                        <div class="foto">
+                            <img th:src="@{/imagen/perfilUsuario/__${resenia.idUsuario.id}__}" alt="">
+                        </div>
+                    </div>
+                    <div class="top-der">
+                       
+                        <h4 th:text="${resenia.idUsuario.nombre}"></h4>
+                        
+                        <h2 th:if="${resenia.calificacion==1}">★☆☆☆☆</h2>
+                        <h2 th:if="${resenia.calificacion==2}">★★☆☆☆</h2>
+                        <h2 th:if="${resenia.calificacion==3}">★★★☆☆</h2>
+                        <h2 th:if="${resenia.calificacion==4}">★★★★☆</h2>
+                        <h2 th:if="${resenia.calificacion==5}">★★★★★</h2>
+
+                    </div>
+                </div>
+    
+                <div class="bot">
+                    <div class="bot-sup">
+                        <p th:text="${resenia.cuerpo}">¡Una experiencia increíble! Estuve recientemente en este lugar y quedé impresionado. El ambiente acogedor, la atención del personal y la deliciosa comida hicieron que mi visita fuera inolvidable. Recomiendo encarecidamente este lugar a cualquiera que busque una experiencia gastronómica única.
+                            </p>
+                    </div>
+                    <div class="bot-info">
+                        <div class="fecha">
+                            <p th:text="${resenia.fecha}"></p>
+                        </div>
+                        <div class="verMas">
+                            <button type="button" class="btn btn-dark">Ver mas</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        
+        </div>
+    </main>
+                
+    <footer th:replace="/fragments/footer :: footer"></footer>
+    <div th:replace="/fragments/script :: div"></div>
+</body>
+
+</html>

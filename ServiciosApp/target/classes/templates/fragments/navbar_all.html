@@ -1,0 +1,114 @@
+<nav>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr);">
+        <!--Logo de página-->
+        <a class="navbar-brand" href="/">
+            <img src="/img/Logo.jpg" alt="Logo" width="80" height="60"
+                class="d-inline-block align-text-top"><br>Web-Services
+        </a>
+        <!--botones de páginas-->
+        <ul class="nav justify-content-center" style="display: flex;
+        justify-content: center;
+        align-content: center;
+        text-align: center;">
+            <!--buscador de especialidades-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false" th:if="${session.usuariosession != null}">Profesiones</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Plomero</a></li>
+                    <li><a class="dropdown-item" href="#">Gasista</a></li>
+                    <li><a class="dropdown-item" href="#">Pintor</a></li>
+                    <li><a class="dropdown-item" href="#">Albañil</a></li>
+                    <li><a class="dropdown-item" href="#">Electricista</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Todas</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#"
+                    id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Proveedores
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/}">Editar proveedores</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li><a class="dropdown-item" th:href="@{/admin/listarProveedores}">Listar proveedores</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#"
+                    id="navbarDropdown" role="button" sec:authorize="hasRole('ADMIN')" data-bs-toggle="dropdown" aria-expanded="false">
+                    Usuarios
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/}">Editar usuarios</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li><a class="dropdown-item" th:href="@{/admin/listarUsuarios}">Listar usuarios</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" data-bs-toggle="dropdown"
+                    href="#" role="button" aria-expanded="false">Perfil</a>
+                <ul class="dropdown-menu">
+                     <li class="nav-item">
+                        <a class="nav-link" th:if="${session.usuariosession != null}" sec:authorize="hasRole('PROVEEDOR')"
+                           th:href="@{/proveedor/perfilProveedor/__${session.usuariosession.id}__}">Mi Perfil</a>
+                           <a class="nav-link" th:if="${session.usuariosession != null}" sec:authorize="hasRole('USUARIO')"
+                           th:href="@{/usuario/perfil/__${session.usuariosession.id}__}">Mi Perfil</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contactos">Contactados</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contratos">Contratados</a>
+                    </li>
+                    <li><a class="dropdown-item" sec:authorize="hasRole('PROVEEDOR')"
+                            th:href="@{/proveedor/actualizarProveedor/__${session.usuariosession.id}__}">Editar Perfil
+                            Proveedor</a></li>
+                    <li><a class="dropdown-item" sec:authorize="hasRole('USUARIO')"
+                            th:href="@{/usuario/actualizarUsuario/__${session.usuariosession.id}__}">Editar Perfil Usuario</a>
+                    </li>
+                    <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
+                    <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')"
+                        th:href="@{/usuario/actualizarUsuario/__${session.usuariosession.id}__}">Editar Perfil
+                        ADMIN</a></li>
+                </ul>
+            </li>
+            <li>
+                <div>
+                    <!--botones de Registor/Login-->
+                    <form class="container-fluid justify-content-end" th:if="${session.usuariosession == null}">
+                        <button class="btn btn-outline-success me-2" type="button">
+                            <a class="nav-link" th:href="@{/registrar}">Registrate!</a>
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary" type="button">
+                            <a class="nav-link" th:href="@{/login}">Login!</a>
+                        </button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <div style="padding-top: 2vh;">
+            <!--Buscador de las páginas-->
+            <form class="d-flex" role="search" th:if="${session.usuariosession != null}" th:action="@{/usuario/buscar}" method="post">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,29 @@
+.resenia {
+    background-image: url(/img/fondo_formulario.avif);
+    background-size: cover;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.center-form {
+    display: inline-block;
+    text-align: left;
+    padding: 50px;
+    border: 1px solid #ccc;
+}
+
+.divVolver{
+    display: grid;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}

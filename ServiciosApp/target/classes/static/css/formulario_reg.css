@@ -1,0 +1,9 @@
+body {
+    background-image: url(/img/fondo_formulario.avif);
+    background-size: cover;
+    height: 700px;
+    color: white;
+    text-align: center;
+}
+
+
