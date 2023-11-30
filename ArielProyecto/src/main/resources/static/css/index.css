@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
 .fondo{
     background-image: url(/img/fondo.jpg);
     background-size:cover;
@@ -44,6 +46,7 @@
     justify-content: center;
     align-content: center;
     text-align: center;
+
 }
 .cardsSub{
     display: grid;
@@ -65,3 +68,200 @@
     font-weight: bold;
     color: black ;  
 }
+
+
+
+
+
+.container-card{
+
+    margin-top: 90px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.carta{
+    /* border: 2px solid black; */
+    max-height: 285px;
+    width: 80vh;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid black;
+    	font-family: 'Krona One', sans-serif;	
+}
+
+.carta .card-top {
+
+}
+
+
+.carta .card-body{
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+}
+
+.carta .card-body .imagen{
+    width: 210px;
+	height: 200px;
+    /* border: 2px solid black; */
+    flex: 1.5;
+    margin-left: 20px;
+        
+}
+
+.carta .card-body .imagen img{
+ 
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+
+
+
+.carta .card-body .datos {
+    /* border: 5px solid black; */
+    padding-right: 20px;
+    border-right: 2px solid black;
+    height: 200px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.carta .card-body .datos h2{
+    /* border: 2px solid black; */
+    margin: 5px 0px 0px 0px;
+ 
+    font-size: 25px;
+
+}
+
+.carta .card-body .datos h3{
+    /* border: 2px solid black; */
+    margin: 0;
+    cursor: context-menu;
+	font-size: 30px;
+	color: #FF6B00;
+     
+}
+
+.carta .card-body .datos h4{
+    /* border: 2px solid black; */
+    margin-top: 0;
+    font-size: 15px;
+    color: rgb(58, 58, 58);
+ 
+}
+
+.carta .card-body .datos a{
+    transition: 0.2s;
+    /* border: 2px solid black; */
+    display: inline-block;
+	padding: 10px 20px;
+	font-size: 14px;
+	text-decoration: none;
+	cursor: pointer;
+	background-color: #302CDD; /* Color azul de fondo */
+	color: #ffffff; /* Color blanco de texto */
+	border: none; /* Sin borde */
+	border-radius: 2px; /* Bordes redondeados */
+	line-height: 10px; /* Altura de línea igual a la altura del botón para centrar verticalmente el texto */
+        text-align: center;
+    
+}
+
+
+
+
+    
+
+.contenedor-cartas {
+    position: relative;
+    flex: 2;
+    max-width: 300px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    height: 100%;
+    overflow: hidden; /* Asegura que el degradado no se salga del contenedor */
+
+    }
+    
+    
+    
+    
+    
+    .info{
+      height: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+    
+    .info h2{
+     font-size: 18px;
+        
+    }
+    
+    
+    
+    
+    .div-oculto {
+    background-color: #3093A9;
+    transition: 0.4s ease-out;
+    transform: translateX(103%);
+    position: absolute;
+    text-align: center;
+    color: #FFF;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    
+    }
+    
+    .descripcion{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    }
+
+    .descripcion h2{
+        font-size: 17px;
+        border-bottom: 2px solid black;
+       
+    }
+    
+    .descripcion h3{
+        font-size: 17px;
+
+       
+    }
+    
+    .contenedor-cartas:hover .div-oculto {
+    transform: translateX(0); /* Muestra el div moviéndolo hacia la izquierda */
+    transition: transform 0.6s ease;
+    }
+
+    .carta .card-body .datos a:hover{
+        background-color: #001f3f;
+        transition: 0.3s;
+    }
+    
+    .detalle{
+        color: black;
+    }

@@ -6,6 +6,7 @@ import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
 import AplicacionServicios.ServiciosApp.enumeraciones.Rol;
+import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import AplicacionServicios.ServiciosApp.repositorios.ProveedorRepositorio;
 import AplicacionServicios.ServiciosApp.servicios.ProveedorServicio;
 import AplicacionServicios.ServiciosApp.servicios.ReseniaServicio;
@@ -77,6 +78,8 @@ public class PortalAdministrador {
             modelo.put("profesiones", profesiones);
             List<ProfesionExtra> profesionesExtra = Arrays.asList(ProfesionExtra.values());
             modelo.put("profesionesExtra", profesionesExtra);
+            List<Sexo> sexos = Arrays.asList(Sexo.values());
+            modelo.put("sexos", sexos);
             modelo.put("usuario", usuario);
             return "usuario_a_proveedor.html";
         } catch (Exception e) {
@@ -87,11 +90,12 @@ public class PortalAdministrador {
     }
 
     @PostMapping("/usuarioAproveedor/{id}")
-    public String cambioRol(@PathVariable String id, @RequestParam(required = false) String error, ModelMap modelo, @RequestParam(required = false) String profesion, @RequestParam(required = false) String profesion2, @RequestParam(required = false) Long telefono) {
+    public String cambioRol(@PathVariable String id, @RequestParam(required = false) String error, ModelMap modelo, @RequestParam(required = false) String profesion, @RequestParam(required = false) String profesion2, @RequestParam(required = false) Long telefono, @RequestParam(required = false) Sexo sexo) {
         try {
-            usuarioServicio.clienteAProveedor(id, profesion, profesion2, telefono);
+            
+            usuarioServicio.clienteAProveedor(id, profesion, profesion2, telefono, sexo);
           
-            return "usuario_list.html";
+            return "redirect:../listarUsuarios";
         } catch (Exception e) {
             modelo.put("error", error);
             return "usuario_a_proveedor.html";
@@ -104,10 +108,10 @@ public class PortalAdministrador {
         try {
             proveedorServicio.proveedorACliente(id);
             modelo.put("exito", "cambio exitoso");
-            return "proveedor_perfil.html";
+            return "redirect:../listarProveedores";
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
-          return "proveedor_perfil.html";
+          return "redirect:../listarProveedores";
         }
     }
     

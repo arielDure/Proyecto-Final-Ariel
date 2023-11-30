@@ -31,13 +31,13 @@ public class ContratoServicio {
     private ContratoRepositorio contratoRepositorio;
 
     @Transactional
-    public void crearContacto(String id, Usuario usuario, Proveedor proveedor){
-
+    public void crearContrato(String requisitos, Usuario usuario, Proveedor proveedor){
         Contrato contrato = new Contrato();
         contrato.setUsuario(usuario);
         contrato.setProveedor(proveedor);
-        contrato.setRespuestaUsuario(true);
-
+        contrato.setRequisitos(requisitos);
+        contrato.setActivo(true);
+        
         contratoRepositorio.save(contrato);
     }
 
@@ -116,7 +116,20 @@ public class ContratoServicio {
             contratoRepositorio.save(contrato);
         }
     }
-
+    
+   
+    public List<Contrato> listaContratoProveedor(String idProveedor) {
+        System.out.println("entre a lista");
+        List<Contrato> contratos = contratoRepositorio.listaContratoProveedor(idProveedor);
+        for (Contrato contrato : contratos) {
+            System.out.println(contrato.toString());
+        }
+        return contratos;
+    }
+    
+    public Contrato getOne(String id){
+        return contratoRepositorio.getOne(id);
+    }
 
 
 }

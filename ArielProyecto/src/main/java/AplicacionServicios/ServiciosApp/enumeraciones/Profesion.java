@@ -9,10 +9,17 @@ package AplicacionServicios.ServiciosApp.enumeraciones;
  * @author Lenovo
  */
 public enum Profesion {
-
-    PLOMERO,
-    GASISTA,
-    PINTOR,
+   
     ALBANIL,
-    ELECTRICISTA;
+    CATERING,
+    ELECTRICISTA,
+    GASISTA,
+    JARDINERO,
+    MAESTRANZA,
+    NIÑERA,
+    PLOMERO,
+    PILETERO,
+    PINTOR,
+    SEGURIDAD,
+    VETERINARIA;
 }

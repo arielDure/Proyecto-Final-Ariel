@@ -11,6 +11,7 @@ import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
 import AplicacionServicios.ServiciosApp.enumeraciones.Rol;
+import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
 import AplicacionServicios.ServiciosApp.repositorios.ProveedorRepositorio;
 import AplicacionServicios.ServiciosApp.repositorios.UsuarioRepositorio;
@@ -43,9 +44,10 @@ public class ProveedorServicio {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void crearProveedor(MultipartFile archivo, String nombre, String email, String password, String password2, Profesion profesion1, ProfesionExtra profesion2, Long telefono) throws MiExcepcion {
+    public void crearProveedor(MultipartFile archivo, String nombre, String email, String password, String password2, Profesion profesion1, ProfesionExtra profesion2, Long telefono,String presentacion,Sexo sexo) throws MiExcepcion {
 
-        validar(archivo, nombre, email, password, password2, telefono);
+
+        validarCrearProveedor(archivo, nombre, email, password, password2, telefono, presentacion);
 
         Proveedor proveedor = new Proveedor();
         proveedor.setNombre(nombre);
@@ -54,13 +56,15 @@ public class ProveedorServicio {
         proveedor.setRol(Rol.PROVEEDOR);
         proveedor.setActivo(true);
         proveedor.setProfesion1(profesion1);
-        if(profesion2.equals(ProfesionExtra.VACIO)){
+        proveedor.setPresentacion(presentacion);
+        if(profesion2.equals(ProfesionExtra.NO)){
             proveedor.setProfesion2(null);
         }else{
             proveedor.setProfesion2(profesion2);
         }
         proveedor.setTelefono(telefono);
         proveedor.setContactos(null);
+        proveedor.setSexo(sexo);
         Imagen imagen = null;
 
         imagen = imagenServicio.guardar(archivo);
@@ -71,18 +75,15 @@ public class ProveedorServicio {
 
     }
 
-    public void validar(MultipartFile archivo, String nombre, String email, String password, String password2, Long telefono) throws MiExcepcion {
+    public void validarCrearProveedor(MultipartFile archivo, String nombre, String email, String password, String password2, Long telefono,String presentacion) throws MiExcepcion {
 
-        if (archivo == null) {
-            throw new MiExcepcion("El archivo no puede estar vacío");
+        if (nombre.isEmpty() || nombre.length() >=28) {
+            throw new MiExcepcion("El nombre no puede estar vacío, o es incorrecto.");
         }
-        if (nombre.isEmpty() || nombre == null) {
-            throw new MiExcepcion("El nombre no puede estar vacío, o es incorrecto");
+        if (email.isEmpty()) {
+            throw new MiExcepcion("El email no puede estar vacío.");
         }
-        if (email.isEmpty() || email == null) {
-            throw new MiExcepcion("El email no puede estar vacío");
-        }
-        if (password.isEmpty() || password == null) {
+        if (password.isEmpty()) {
             throw new MiExcepcion("La contraseña no puede estar vacía.");
         }
         if (password.length() <= 7) {
@@ -94,17 +95,21 @@ public class ProveedorServicio {
         if (telefono == null) {
             throw new MiExcepcion("Debe ingresar su numero de telefono.");
         }
-
+        if (presentacion.isEmpty()) {
+            throw new MiExcepcion("la presentacion debe contener algo.");
+        }
+        if (presentacion.length() >= 26){
+            throw new MiExcepcion("La presentacion no puede tener mas de 26 caracteres.");
+        }
     }
 
     @Transactional
     public void actualizarProovedor(MultipartFile archivo, String idProveedor, String nombre,
-            String email, String password, String password2, Profesion profesion,
-            ProfesionExtra profesion2, Long telefono) throws MiExcepcion {
+            String email, String password, String password2,Profesion profesion,
+            ProfesionExtra profesion2, Long telefono,String presentacion,Sexo sexo, String descripcion) throws MiExcepcion {
   
-        validar(archivo, nombre, email, password, password2, telefono);
+        validarActualizarProveedor(archivo, nombre, email, profesion, profesion2, password, password2, telefono);
 
-   
         Optional<Proveedor> respuesta = proveedorRepositorio.findById(idProveedor);
 
         if (respuesta.isPresent()) {
@@ -115,8 +120,11 @@ public class ProveedorServicio {
             proveedor.setTelefono(telefono);
             proveedor.setProfesion1(profesion);
             proveedor.setProfesion2(profesion2);
+            proveedor.setPresentacion(presentacion);
             proveedor.setPassword(new BCryptPasswordEncoder().encode(password));
             proveedor.setRol(Rol.PROVEEDOR);
+            proveedor.setSexo(sexo);
+            proveedor.setDescripcion(descripcion);
             
             Imagen imagen;
             
@@ -130,9 +138,39 @@ public class ProveedorServicio {
         }
     }
 
+    public void validarActualizarProveedor(MultipartFile archivo, String nombre, String email, Profesion profesion, ProfesionExtra profesion2, String password, String password2, Long telefono) throws MiExcepcion {
+
+        if (nombre.isEmpty()) {
+            throw new MiExcepcion("El nombre no puede estar vacío, o es incorrecto.");
+        }
+        if(nombre.length() >=28){
+            throw new MiExcepcion("El nombre completo no puede tener mas de 28 caracteres.");
+        }
+        if (email.isEmpty()) {
+            throw new MiExcepcion("El email no puede estar vacío.");
+        }
+        if (password.isEmpty() ) {
+            throw new MiExcepcion("La contraseña no puede estar vacía.");
+        }
+        if (password.length() <= 7) {
+            throw new MiExcepcion("La contraseña debe tener mas de 8 carácteres.");
+        }
+        if (!password.equals(password2)) {
+            throw new MiExcepcion("Las contraseñas no coinciden.");
+        }
+        if (Profesion.valueOf(profesion.toString()).equals(ProfesionExtra.valueOf(profesion2.toString()))){
+            throw new MiExcepcion("Las profesiones no pueden coincidir");
+            //hacer div para probarlo ^
+
+        }
+        if (telefono.equals(null)) {
+            throw new MiExcepcion("Debe ingresar su numero de telefono.");
+        }
+    }
+
 
     // Método que devuelve una lista de proveedores - sin especificar la profesión --
-    public List<Proveedor> listarProveedores() {
+     public List<Proveedor> listarProveedores() {
         List<Proveedor> proveedor = new ArrayList<>();
         proveedor = proveedorRepositorio.findAll();
         return proveedor;
@@ -178,7 +216,8 @@ public class ProveedorServicio {
             usuario.setPassword(proveedor.getPassword());
             usuario.setActivo(true);
             usuario.setRol(Rol.USUARIO);
-
+            usuario.setSexo(proveedor.getSexo());
+            usuario.setImagen(proveedor.getImagen());
             borrarProovedorPorId(idProveedor);
 
             usuarioRepositorio.save(usuario);

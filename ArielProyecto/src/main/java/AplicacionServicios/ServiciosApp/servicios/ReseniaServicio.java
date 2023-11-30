@@ -88,8 +88,11 @@ public class ReseniaServicio {
     public void validar(String cuerpo, Integer calificacion) throws MiExcepcion {
 
        
-        if (cuerpo.isEmpty() || cuerpo == null) {
+        if (cuerpo.isEmpty()) {
             throw new MiExcepcion("El cuerpo no puede estar vacío, o ser nulo");
+        }
+        if (cuerpo.length() >= 255){
+            throw new MiExcepcion("La reseña esta limitada a 255 caracteres.");
         }
         if (calificacion == null) {
             throw new MiExcepcion("La calificacion no puede ser nula o no estar comprendida entre 1 y 5");

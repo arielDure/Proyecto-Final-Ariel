@@ -39,6 +39,15 @@
                                        th:value="${nombre}">
                             </div>
                             <div class="form-group my-3">
+                                <select name="sexo">
+                                    <option th:each="sexo:${sexos}"
+                                            th:value="${sexo}"
+                                            th:text="${sexo}">
+
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group my-3">
                                 <input type="email" class="form-control" name="email" placeholder="EMAIL"
                                        th:value="${email}">
                             </div>
@@ -88,6 +97,15 @@
                                        th:value="${nombre}">
                             </div>
                             <div class="form-group my-3">
+                                <select name="sexo">
+                                    <option th:each="sexo:${sexos}"
+                                            th:value="${sexo}"
+                                            th:text="${sexo}">
+
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group my-3">
                                 <input type="email" class="form-control" name="email" placeholder="EMAIL"
                                        th:value="${email}">
                             </div>
@@ -104,6 +122,14 @@
                                 <input type="password" class="form-control" name="password2"
                                        placeholder="REPETIR CONTRASEÑA" th:value="${password2}">
                             </div>
+                            
+                            <h5 style="color: grey;text-align: start;">Presentacion</h5>
+                            
+                            <div class="form-group my-3">
+                                <input type="text" class="form-control" name="presentacion" placeholder="Hola tengo experiencia en el ambito..."
+                                      >
+                            </div>
+                            <h5 style="color:grey;text-align: center;">Profesión</h5>
                             <div class="form-group my-3">
                                 <select name="profesion1">
                                     <option th:each="profesion:${profesiones}"
@@ -113,6 +139,7 @@
                                     </option>
                                 </select>
                             </div>
+                               <h5 style="color:grey;text-align: center;">Otra Profesión</h5>
                             <div class="form-group my-3">
                                 <select name="profesion2">
                                     <option th:each="profesion2:${profesionesExtra}"

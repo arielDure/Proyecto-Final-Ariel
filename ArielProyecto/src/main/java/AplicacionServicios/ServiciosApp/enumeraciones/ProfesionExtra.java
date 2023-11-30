@@ -2,11 +2,18 @@ package AplicacionServicios.ServiciosApp.enumeraciones;
 
 public enum ProfesionExtra {
 
-    VACIO,
-    PLOMERO,
-    GASISTA,
-    PINTOR,
+    NO,
     ALBANIL,
-    ELECTRICISTA;
-
+    CATERING,
+    ELECTRICISTA,
+    GASISTA,
+    JARDINERO,
+    MAESTRANZA,
+    NIÑERA,
+    PLOMERO,
+    PILETERO,
+    PINTOR,
+    SEGURIDAD,
+    VETERINARIA;
+   
 }

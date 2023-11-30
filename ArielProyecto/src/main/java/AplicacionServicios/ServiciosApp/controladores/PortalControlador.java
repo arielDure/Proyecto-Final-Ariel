@@ -10,6 +10,7 @@ import AplicacionServicios.ServiciosApp.entidades.Resenia;
 import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
+import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
 import AplicacionServicios.ServiciosApp.servicios.ProveedorServicio;
 import AplicacionServicios.ServiciosApp.servicios.ReseniaServicio;
@@ -54,7 +55,7 @@ public class PortalControlador {
   
     
     //Agregue lista de proveedores para mostrar en el index (Ariel Duré)
-    @GetMapping("/")
+     @GetMapping("/")
     public String index(ModelMap modelo){
          List<Proveedor> proveedores = proveedorServicio.listarProveedores();
          modelo.addAttribute("proveedores", proveedores);
@@ -63,6 +64,8 @@ public class PortalControlador {
     
     @GetMapping("/registrar")
     public String registrar(ModelMap modelo){
+        List<Sexo> sexos = Arrays.asList(Sexo.values());
+        modelo.put("sexos", sexos);
         List<Profesion> profesiones = Arrays.asList(Profesion.values());
         modelo.put("profesiones", profesiones);
         List<ProfesionExtra> profesionesExtra = Arrays.asList(ProfesionExtra.values());

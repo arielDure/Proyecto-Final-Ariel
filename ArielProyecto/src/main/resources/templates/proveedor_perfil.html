@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service-app</title>
+    <title>Web Service</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/perfil.css">
@@ -14,6 +14,7 @@
 
     <main>
     <div th:replace="/fragments/navbar_all :: div"></div>
+    <br>
     <div class="principal">
         <div class="imagen">
            <img th:src="@{/imagen/perfilProveedor/__${proveedor.id}__}" alt="Imagen_proveedor">
@@ -32,15 +33,15 @@
                 <h3><span th:text="${proveedor.profesion1}"></span></h3>
                 <h3><span th:text="${proveedor.profesion2}"></span></h3>
                 <h3><span th:text="${proveedor.telefono}"></span></h3>
-                <p>Ejemplo de descripcion: Plomero con amplia experiencia en instalación, 
-                    reparación y mantenimiento de sistemas de fontanería. Especializado en identificar y resolver 
-                    eficientemente problemas de tuberías, grifos y desagües. Comprometido con la satisfacción del cliente y la calidad del trabajo.</p>
+                <p th:text="${proveedor.descripcion}"></p>
             </div>
-            <div class="botones">
-                <button class="btn btn-primary mt-3 botones">Chat</button>
-                <button class="btn btn-primary mt-3 botones"> <a th:href="@{/contrato/inicio}">Contratar</a></button>
-                <button class="btn btn-primary mt-3 botones">Trabajo finalizado</button>
-               
+            
+            
+          <div class="botones">
+                <a class="btn btn-primary mt-3 botones">Chat</a>
+                <a class="btn btn-primary mt-3 botones" sec:authorize="hasAnyRole('ADMIN','USUARIO')" th:href="@{/contrato/crearContratoUsuario/__${proveedor.id}__}">Contratar</a>
+                <a class="btn btn-primary mt-3 botones" >Trabajo finalizado</a>
+
             </div>
         </div>
     </div>

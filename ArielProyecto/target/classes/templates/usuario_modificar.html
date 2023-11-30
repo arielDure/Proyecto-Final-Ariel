@@ -11,20 +11,29 @@
                 <div class="container">
                     <div class="container-fluid m-5 contenedor">
 
-                        <form class="center-form" th:action="@{/usuario/actualizarUsuario}" method="POST"
+
+                        <form class="center-form" th:action="@{/usuario/actualizandoUsuario/__${id}__}" method="POST"
                             enctype="multipart/form-data">
 
 
                             <div class="form-group my-3">
-                                <h3 class="card-title">Registrate! Usuario</h3>
+                                <h3 class="card-title">Editar Perfil</h3>
                             </div>
-                            <div class="form-group my-3">
-                                <input hidden type="text" class="form-control" name="idUsuario" placeholder="NOMBRE"
-                                    th:value="${usuario.id}">
-                            </div>
+
+                            <input hidden th:value="${usuario.id}" name="idUsuario">
+                            
                             <div class="form-group my-3">
                                 <input type="text" class="form-control" name="nombre" placeholder="NOMBRE"
                                     th:value="${usuario.nombre}">
+                            </div>
+                            <div class="form-group my-3">
+                                <select name="sexo">
+                                    <option th:each="sexo:${sexos}"
+                                            th:value="${sexo}"
+                                            th:text="${sexo}">
+
+                                    </option>
+                                </select>
                             </div>
                             <div class="form-group my-3">
                                 <input type="email" class="form-control" name="email" placeholder="EMAIL"
@@ -46,7 +55,7 @@
                                     placeholder="REPETIR CONTRASEÑA" >
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-3 botones">Registrarme</button>
+                            <button type="submit" class="btn btn-primary mt-3 botones">Aceptar</button>
 
                             <div class="divVolver">
                                 <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
@@ -57,9 +66,6 @@
             </div>
         </div>
     </div>
-    <!--Modificar Proveedor-->
-   
-    <!--Modificar Proveedor-->
 
     <footer th:replace="/fragments/footer :: footer"></footer>
     <div th:replace="/fragments/script :: div"></div>

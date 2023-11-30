@@ -3,6 +3,7 @@ AplicacionServicios\ServiciosApp\servicios\UsuarioServicio.class
 AplicacionServicios\ServiciosApp\servicios\ReseniaServicio.class
 AplicacionServicios\ServiciosApp\controladores\PortalControlador.class
 AplicacionServicios\ServiciosApp\servicios\ImagenServicio.class
+AplicacionServicios\ServiciosApp\controladores\ContratoControlador.class
 AplicacionServicios\ServiciosApp\controladores\UsuarioControlador.class
 AplicacionServicios\ServiciosApp\repositorios\ProveedorRepositorio.class
 AplicacionServicios\ServiciosApp\enumeraciones\Profesion.class
@@ -13,6 +14,7 @@ AplicacionServicios\ServiciosApp\ServiciosAppApplication.class
 AplicacionServicios\ServiciosApp\controladores\ProveedorControlador.class
 AplicacionServicios\ServiciosApp\controladores\PortalAdministrador.class
 AplicacionServicios\ServiciosApp\entidades\Contrato.class
+AplicacionServicios\ServiciosApp\enumeraciones\Sexo.class
 AplicacionServicios\ServiciosApp\repositorios\ContratoRepositorio.class
 AplicacionServicios\ServiciosApp\servicios\ContratoServicio.class
 AplicacionServicios\ServiciosApp\entidades\Proveedor.class

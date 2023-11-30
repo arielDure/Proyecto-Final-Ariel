@@ -1,59 +1,33 @@
 package AplicacionServicios.ServiciosApp.entidades;
 import javax.persistence.*;
 import java.util.Date;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Contrato {
 
     @Id
-    @GeneratedValue(generator="uuid")
-    private   String id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid",strategy = "uuid2")
+    private String id;
 
-    private String  contacto;
     private Date contratoInicio;
     private Date contratoFinalizado;
     private Double precio;
-
+    private Date inicioDelTrabajo;
+    private String requisitos;
+    private String horasAprox;
     private Boolean activo;
-
     private Boolean respuestaProveedor;
-
     private Boolean respuestaUsuario;
+
     @OneToOne
     private Usuario usuario;
 
     @OneToOne
-    private  Proveedor proveedor;
-
+    private Proveedor proveedor;
 
     public Contrato() {
-    }
-
-    public Contrato(String id, String contacto, Date contratoInicio, Date contratoFinalizado, Double precio, Boolean activo, Usuario usuario, Proveedor proveedor) {
-        this.id = id;
-        this.contacto = contacto;
-        this.contratoInicio = contratoInicio;
-        this.contratoFinalizado = contratoFinalizado;
-        this.precio = precio;
-        this.activo = activo;
-        this.usuario = usuario;
-        this.proveedor = proveedor;
-    }
-
-    public Boolean getRespuestaProveedor() {
-        return respuestaProveedor;
-    }
-
-    public void setRespuestaProveedor(Boolean respuestaProveedor) {
-        this.respuestaProveedor = respuestaProveedor;
-    }
-
-    public Boolean getRespuestaUsuario() {
-        return respuestaUsuario;
-    }
-
-    public void setRespuestaUsuario(Boolean respuestaUsuario) {
-        this.respuestaUsuario = respuestaUsuario;
     }
 
     public String getId() {
@@ -62,14 +36,6 @@ public class Contrato {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getContacto() {
-        return contacto;
-    }
-
-    public void setContacto(String contacto) {
-        this.contacto = contacto;
     }
 
     public Date getContratoInicio() {
@@ -96,12 +62,52 @@ public class Contrato {
         this.precio = precio;
     }
 
+    public Date getInicioDelTrabajo() {
+        return inicioDelTrabajo;
+    }
+
+    public void setInicioDelTrabajo(Date inicioDelTrabajo) {
+        this.inicioDelTrabajo = inicioDelTrabajo;
+    }
+
+    public String getRequisitos() {
+        return requisitos;
+    }
+
+    public void setRequisitos(String requisitos) {
+        this.requisitos = requisitos;
+    }
+
+    public String getHorasAprox() {
+        return horasAprox;
+    }
+
+    public void setHorasAprox(String horasAprox) {
+        this.horasAprox = horasAprox;
+    }
+
     public Boolean getActivo() {
         return activo;
     }
 
     public void setActivo(Boolean activo) {
         this.activo = activo;
+    }
+
+    public Boolean getRespuestaProveedor() {
+        return respuestaProveedor;
+    }
+
+    public void setRespuestaProveedor(Boolean respuestaProveedor) {
+        this.respuestaProveedor = respuestaProveedor;
+    }
+
+    public Boolean getRespuestaUsuario() {
+        return respuestaUsuario;
+    }
+
+    public void setRespuestaUsuario(Boolean respuestaUsuario) {
+        this.respuestaUsuario = respuestaUsuario;
     }
 
     public Usuario getUsuario() {
@@ -119,4 +125,6 @@ public class Contrato {
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
+
+    
 }

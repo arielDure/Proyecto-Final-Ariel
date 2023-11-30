@@ -7,6 +7,7 @@ package AplicacionServicios.ServiciosApp.entidades;
 
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
+import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,30 +18,30 @@ import javax.persistence.OneToMany;
 /**
  * @author tobia
  */
-
 @Entity
 public class Proveedor extends Usuario {
 
 // EN LA BASE DE DATOS NO SE CREA UNA NUEVA TABLA LLAMADA PROVEEDOR , SE INCLUYE DIRECAMENTE COMO USUARIO YA QUE HEREDA DE ÉL 
-
     @Enumerated(EnumType.STRING)
     private Profesion profesion1;
-    
+
     @Enumerated(EnumType.STRING)
     private ProfesionExtra profesion2;
 
     /* figurarnos como asignar mas de un rol en un proveedor. pedir ayuda a primera hora! */
-
     private Long telefono;
     private Long contactos;
-
+    private String presentacion;
+    private String descripcion;
+    
     @OneToMany
     private List<Resenia> resenias;
 
 
+
     public Proveedor() {
     }
-
+    
     public Profesion getProfesion1() {
         return profesion1;
     }
@@ -65,14 +66,6 @@ public class Proveedor extends Usuario {
         this.telefono = telefono;
     }
 
-    public List getResenias() {
-        return resenias;
-    }
-
-    public void setResenias(List resenias) {
-        this.resenias = resenias;
-    }
-
     public Long getContactos() {
         return contactos;
     }
@@ -80,9 +73,29 @@ public class Proveedor extends Usuario {
     public void setContactos(Long contactos) {
         this.contactos = contactos;
     }
-    
-    /*
-    hacer lista de proveedores.
-     */
+
+    public String getPresentacion() {
+        return presentacion;
+    }
+
+    public void setPresentacion(String presentacion) {
+        this.presentacion = presentacion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public List<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public void setResenias(List<Resenia> resenias) {
+        this.resenias = resenias;
+    }
 
 }

@@ -51,7 +51,7 @@
                             <a th:href= "@{/admin/resenia/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i>Reseñas</a>
                         </td>
                        <td sec:authorize="hasRole('ADMIN')">
-                            <a th:href= "@{/proveedor/cambiarRolProveedor/__${proveedor.id}__}"><i class="fas fa-feather-alt"  ></i>Cambiar</a>
+                            <a th:href= "@{/admin/cambiarRolProveedor/__${proveedor.id}__}"><i class="fas fa-feather-alt"  ></i>Cambiar</a>
                         </td>
 
                         <td sec:authorize="hasRole('ADMIN')">

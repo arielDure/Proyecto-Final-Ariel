@@ -6,12 +6,12 @@
 
     <body>
         <div th:replace="/fragments/navbar_all :: div"></div>
-        <br>
+        <!-- <br>-->
         <div th:replace="/fragments/error :: div"></div>
         <div class="fondo">
             <header class="head">
                 <h1 class="titulo">Web Services</h1>
-                <br><br>
+                <!-- <br><br>-->
                 <div class="cardsSub">
                     <span class="cards">
                         <div th:replace="/fragments/prov_cards :: div"></div>
@@ -25,26 +25,50 @@
                         </span>
                        <span th:if="${session.usuariosession == null}">Te damos la bienvenida </span>
                         </span>
-                        a la página de proveedores
-                        <br>de Servicios de la localidad <strong class="parrafo">CHACRAS DE CORIA</strong>
+                        a la plataforma
+                        <br>de servicios de <strong class="parrafo">CHACRAS DE CORIA</strong>
                     </div>
                 </div>
 
             </header>
-
+</div>
             <!-- Están los servicios en forma de cards -->
 
-            <br><br><br>
+            <!-- <br><br><br>-->
     
+       
+       <!--  <br>-->
+         <div class="container-card">
+    
+    <div class="carta" th:each="proveedor : ${proveedores}">
+        <div class="card-top"></div>
+        <div class="card-body">
+            <div class="imagen">
+                <img th:src="@{/imagen/perfilProveedor/__${proveedor.id}__}" alt="">
+            </div>
+            <div class="datos">
+            <h2 th:text="${proveedor.nombre}"></h2>
+            <h3>★★★☆☆</h3>
+            <h4>4 reseñas</h4>
+            <a th:href= "@{/proveedor/perfilProveedor/__${proveedor.id}__}" alt="imagen"> Ir al Perfil</a>
+            </div>
+            <div class="contenedor-cartas">
+                <div class="div-oculto">
+                <div class="descripcion">
+                      <h2>¿Que ofrezco?</h2>
+                      <h3 th:text="${proveedor.presentacion}"></h3>
+                  </div>
+                </div>
+                <div class="info">
+                    <h2 th:text="${proveedor.profesion1}"></h2>
+                    <h2 th:unless="${proveedor.profesion2 == T(AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra).NO}" th:text="${proveedor.profesion2}"></h2>
+                   
+                 </div>
+              </div>
         </div>
-        <br>
-        <!-- Iconos de pantalla -->
-        <div class="iconos">
-            <div class="plomero"><img src="/img/icono_plomero.png" alt="plomero" width="80" height="60"></div>
-            <div class="plomero"><img src="/img/icono_albanil.png" alt="plomero" width="80" height="60"></div>
-            <div class="plomero"><img src="/img/icono_pintor.png" alt="plomero" width="80" height="60"></div>
-            <div class="plomero"><img src="/img/icono_electricista.png" alt="plomero" width="80" height="60"></div>
-        </div>
+    </div>
+   </div>
+         
         <footer th:replace="/fragments/footer :: footer"></footer>
         <div th:replace="/fragments/script :: div"></div>
     </body>

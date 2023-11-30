@@ -9,9 +9,9 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>AplicacionServicios</groupId>
-  <artifactId>ArielProyecto</artifactId>
+  <artifactId>ServiciosApp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Ariel Proyecto</name>
+  <name>ServiciosApp</name>
   <description>Egg Equipo J</description>
   <properties>
     <java.version>1.8</java.version>

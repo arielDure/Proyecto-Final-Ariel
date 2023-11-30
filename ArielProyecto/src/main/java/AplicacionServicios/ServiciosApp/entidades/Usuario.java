@@ -6,6 +6,7 @@
 package AplicacionServicios.ServiciosApp.entidades;
 
 import AplicacionServicios.ServiciosApp.enumeraciones.Rol;
+import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -20,31 +21,30 @@ import javax.persistence.OneToOne;
  *
  * @author Lenovo
  */
-
 @Entity
 public class Usuario {
- @Id
- @GeneratedValue(generator="uuid")
- private String id;
- private String nombre;
- private String password;
- private String email;
- 
- @OneToOne
- private Imagen imagen;
- 
- @OneToMany
- private List<Resenia> resenias;
 
- 
- @Enumerated(EnumType.STRING)
- private Rol rol;
- private Boolean activo;
+    @Id
+    @GeneratedValue(generator = "uuid")
+    private String id;
+    private String nombre;
+    private String password;
+    private String email;
 
- 
-     public Usuario() {
+    @OneToOne
+    private Imagen imagen;
+
+    @OneToMany
+    private List<Resenia> resenias;
+
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
+    private Boolean activo;
+    private Sexo sexo;
+
+    public Usuario() {
     }
- 
+
     public String getId() {
         return id;
     }
@@ -85,7 +85,7 @@ public class Usuario {
         this.password = password;
     }
 
-     public Rol getRol() {
+    public Rol getRol() {
         return rol;
     }
 
@@ -100,9 +100,13 @@ public class Usuario {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
- 
-    
- 
- 
-}
 
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+}

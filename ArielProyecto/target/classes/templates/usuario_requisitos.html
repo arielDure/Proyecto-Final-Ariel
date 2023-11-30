@@ -10,10 +10,11 @@
     <div th:replace="/fragments/navbar_all :: div"></div>
 
     <main>
-        <form th:action="@{/contrato/requisitos}" method="POST">
+        <form th:action="@{/contrato/requisitos/__${proveedor.id}__}" method="POST">
             <div class="mb-3">
                 <label for="requisitos" class="form-label">Requerimientos del trabajo</label>
                 <textarea class="form-control" name="requisitos" id="requisitos" rows="3" th:value="${requisitos}"></textarea>
+                  <input hidden type="text" name="idUsuario" th:value="${usuario.id}">
               </div>
             <button type="submit" class="btn btn-primary">Enviar Requerimientos</button>
             <button th:href="@{/}" class="btn btn-primary">Cancelar</button>

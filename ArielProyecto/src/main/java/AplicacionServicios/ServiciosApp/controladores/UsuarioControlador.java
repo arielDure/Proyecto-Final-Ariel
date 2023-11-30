@@ -8,6 +8,7 @@ package AplicacionServicios.ServiciosApp.controladores;
 import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
+import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
 import AplicacionServicios.ServiciosApp.servicios.UsuarioServicio;
 import java.util.Arrays;
@@ -27,57 +28,71 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
-    
+
     @Autowired
     private UsuarioServicio usuarioServicio;
 
-     @PostMapping("/registroUsuario")
-    public String registroUsuario(MultipartFile archivo,@RequestParam String nombre,
-            @RequestParam String email,@RequestParam String password,@RequestParam String password2,ModelMap modelo){
-      
+    @PostMapping("/registroUsuario")
+    public String registroUsuario(MultipartFile archivo, @RequestParam String nombre,
+            @RequestParam String email, @RequestParam String password, @RequestParam String password2, ModelMap modelo, Sexo sexo) {
+
         try {
-            usuarioServicio.crearUsuario(archivo,nombre, email, password, password2);
-         
+
+            usuarioServicio.crearUsuario(archivo, nombre, email, password, password2, sexo);
             modelo.put("exito", "Usuario registrado correctamente!");
-           
+
         } catch (MiExcepcion ex) {
+            
             modelo.put("error", ex.getMessage());
+            List<Sexo> sexos = Arrays.asList(Sexo.values());
+            modelo.put("sexos", sexos);
             modelo.put("nombre",nombre);
             modelo.put("email",email);
             return "redirect:../registrar";
         }  
            return "redirect:../login";
+
     }
-   
+
     @GetMapping("/actualizarUsuario/{id}")
-    public String actualizarUsuario(@PathVariable String id,ModelMap modelo){
+    public String actualizarUsuario(@PathVariable String id, ModelMap modelo) {
         Usuario usuario = usuarioServicio.getOne(id);
         modelo.put("usuario", usuario);
+        List<Sexo> sexos = Arrays.asList(Sexo.values());
+        modelo.put("sexos", sexos);
         return "usuario_modificar.html";
-        
+
     }
-    
-    @PostMapping("/actualizarUsuario")
-    public String actualizandoUsuario(MultipartFile archivo,@RequestParam String idUsuario,@RequestParam String nombre,
-           @RequestParam String email,@RequestParam String password,@RequestParam String password2) {
-        
+
+
+    @PostMapping("/actualizandoUsuario/{idUsuario}")
+    public String actualizandoUsuario(@RequestParam MultipartFile archivo, @PathVariable String idUsuario, @RequestParam String nombre,
+            @RequestParam String email, @RequestParam String password, @RequestParam String password2, HttpSession session, ModelMap modelo, Sexo sexo) {
+        Usuario logeado = (Usuario) session.getAttribute("usuariosession");
         try {
-            usuarioServicio.actualizarUsuario(archivo, idUsuario, nombre, email, password, password2);
-             return "redirect:../inicio";
+            usuarioServicio.actualizarUsuario(archivo, idUsuario, nombre, email, password, password2, sexo);
         } catch (MiExcepcion ex) {
-              return "usuario_modificar.html";
+            List<Sexo> sexos = Arrays.asList(Sexo.values());
+            modelo.put("sexos", sexos);
+            modelo.put("error", ex.getMessage());
+            return "usuario_modificar.html";
         }
-        
-       
+        modelo.put("exito", "actualizado con exito");
+        if (logeado.getRol().toString().equals("ADMIN")) {
+            return "redirect:../../admin/listarUsuarios";
+        }
+
+        return "redirect:/inicio";
+
     }
-            
     
-     @GetMapping("/cambiarRol/{id}")
+    
+    @GetMapping("/cambiarRol/{id}")
     public String cambiarRol(@RequestParam(required = false) String error, ModelMap modelo, @PathVariable String id) {
 
         try {
             Usuario usuario = usuarioServicio.getOne(id);
-             List<Profesion> profesiones = Arrays.asList(Profesion.values());
+            List<Profesion> profesiones = Arrays.asList(Profesion.values());
             modelo.put("profesiones", profesiones);
             List<ProfesionExtra> profesionesExtra = Arrays.asList(ProfesionExtra.values());
             modelo.put("profesionesExtra", profesionesExtra);
@@ -85,36 +100,47 @@ public class UsuarioControlador {
             return "usuario_a_proveedor.html";
         } catch (Exception e) {
             modelo.put("error", error);
-            return "usuario_list.html";
+            return "redirect:../perfil/{id}";
         }
 
     }
+    
+    //INUTILIZABLE HASTA TENER LA LOGICA DE BORRAR TODOS LOS CONTATOS QUE ESTAN VINCULADOS AL PROVEEDOR
 
     @PostMapping("/usuarioAproveedor/{id}")
-    public String cambioRol(@PathVariable String id, @RequestParam(required = false) String error, ModelMap modelo, @RequestParam(required = false) String profesion, @RequestParam(required = false) String profesion2, @RequestParam(required = false) Long telefono) {
+    public String cambioRol(@PathVariable String id, @RequestParam(required = false) String error, ModelMap modelo, @RequestParam(required = false) String profesion, @RequestParam(required = false) String profesion2, @RequestParam Long telefono, @RequestParam(required = false) Sexo sexo) {
         try {
-            usuarioServicio.clienteAProveedor(id, profesion, profesion2, telefono);
-          
-            return "usuario_list.html";
+            
+            usuarioServicio.clienteAProveedor(id, profesion, profesion2, telefono, sexo);
+            System.out.println("Entre por aca");
+            return "redirect:../../logout";
+
         } catch (Exception e) {
             modelo.put("error", error);
+            Usuario usuario = usuarioServicio.getOne(id);
+            List<Profesion> profesiones = Arrays.asList(Profesion.values());
+            modelo.put("profesiones", profesiones);
+            List<ProfesionExtra> profesionesExtra = Arrays.asList(ProfesionExtra.values());
+            modelo.put("profesionesExtra", profesionesExtra);
+            modelo.put("usuario", usuario);
             return "usuario_a_proveedor.html";
         }
     }
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USUARIO','ROLE_ADMIN','ROLE_PROVEEDOR')")
     @GetMapping("/perfil/{id}")
-    public String perfil(ModelMap modelo, HttpSession session, @PathVariable String id) {    
+    public String perfil(ModelMap modelo, HttpSession session, @PathVariable String id) {
         Usuario usuario = usuarioServicio.getOne(id);
         modelo.put("usuario", usuario);
 
         return "usuario_perfil.html";
 
     }
-    
+
     @GetMapping("/cargarResenia")
-    public String cargarResenia(){
-    return "resenia.html";
-}
-    
+
+    public String cargarResenia() {
+        return "resenia.html";
+    }
+
 }

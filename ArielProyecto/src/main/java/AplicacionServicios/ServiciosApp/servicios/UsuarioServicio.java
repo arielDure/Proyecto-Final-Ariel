@@ -11,6 +11,7 @@ import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
 import AplicacionServicios.ServiciosApp.enumeraciones.Rol;
+import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
 import AplicacionServicios.ServiciosApp.repositorios.ProveedorRepositorio;
 import AplicacionServicios.ServiciosApp.repositorios.UsuarioRepositorio;
@@ -49,9 +50,9 @@ public class UsuarioServicio implements UserDetailsService {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void crearUsuario(MultipartFile archivo, String nombre, String email, String password, String password2) throws MiExcepcion {
+    public void crearUsuario(MultipartFile archivo, String nombre, String email, String password, String password2, Sexo sexo) throws MiExcepcion {
 
-        validar(archivo, nombre, email, password, password2);
+        validarCrearUsuario(archivo, nombre, email, password, password2);
 
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
@@ -59,6 +60,7 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
         usuario.setRol(Rol.USUARIO);
         usuario.setActivo(true);
+        usuario.setSexo(sexo);
 
         Imagen imagen = null;
 
@@ -70,7 +72,7 @@ public class UsuarioServicio implements UserDetailsService {
 
     }
 
-    public void validar(MultipartFile archivo, String nombre, String email, String password, String password2) throws MiExcepcion {
+    public void validarCrearUsuario(MultipartFile archivo, String nombre, String email, String password, String password2) throws MiExcepcion {
 
         if (archivo == null) {
             throw new MiExcepcion("El archivo no puede estar vacío");
@@ -90,12 +92,28 @@ public class UsuarioServicio implements UserDetailsService {
         if (!password.equals(password2)) {
             throw new MiExcepcion("Las contraseñas no coinciden");
         }
+        if (email.isEmpty()) {
+            throw new MiExcepcion("El email esta vacio");
+        }
     }
 
-    @Transactional
-    public void actualizarUsuario(MultipartFile archivo, String idUsuario, String nombre, String email, String password, String password2) throws MiExcepcion {
+    public String buscarPorEmail(String email) throws MiExcepcion {
 
-        validar(archivo, nombre, email, password, password2);
+        Usuario usuario = usuarioRepositorio.buscarUsuarioPorEmail(email);
+        if (usuario != null) {
+            return usuario.getEmail();
+        } else {
+            return "";
+        }
+
+    }
+  
+    
+    
+    @Transactional
+    public void actualizarUsuario(MultipartFile archivo, String idUsuario, String nombre, String email, String password, String password2, Sexo sexo) throws MiExcepcion {
+
+        validarActualizarUsuario(archivo, nombre, email, password, password2);
 
         Optional<Usuario> respuesta = usuarioRepositorio.findById(idUsuario);
 
@@ -106,9 +124,11 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setEmail(email);
             usuario.setPassword(new BCryptPasswordEncoder().encode(password));
             usuario.setRol(Rol.USUARIO);
+            usuario.setSexo(sexo);
 
             String idImagen = null;
 
+            
             if (usuario.getImagen() != null) {
                 idImagen = usuario.getImagen().getId();
             }
@@ -118,6 +138,25 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setImagen(imagen);
 
             usuarioRepositorio.save(usuario);
+        }
+    }
+    
+      public void validarActualizarUsuario(MultipartFile archivo, String nombre, String email, String password, String password2) throws MiExcepcion {
+
+        if (nombre.isEmpty()) {
+            throw new MiExcepcion("El nombre no puede estar vacío");
+        }
+        if (email.isEmpty()) {
+            throw new MiExcepcion("El email no puede estar vacío");
+        }
+        if (password.isEmpty()) {
+            throw new MiExcepcion("La contraseña no puede estar vacía.");
+        }
+        if (password.length() <= 7) {
+            throw new MiExcepcion("La contraseña debe tener mas de 8 carácteres.");
+        }
+        if (!password.equals(password2)) {
+            throw new MiExcepcion("Las contraseñas no coinciden");
         }
     }
 
@@ -148,8 +187,9 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void clienteAProveedor(String idUsuario, String profesion, String profesion2, Long telefono) {
+    public void clienteAProveedor(String idUsuario, String profesion, String profesion2, Long telefono, Sexo sexo) throws MiExcepcion{
 
+//        validarClienteAProveedor(telefono, profesion, profesion2);
         Optional<Usuario> respuesta = usuarioRepositorio.findById(idUsuario);
 
         if (respuesta.isPresent()) {
@@ -166,6 +206,8 @@ public class UsuarioServicio implements UserDetailsService {
             proveedor.setTelefono(telefono);
             proveedor.setProfesion1(Profesion.valueOf(profesion));
             proveedor.setProfesion2(ProfesionExtra.valueOf(profesion2));
+            //hay que hacer toda la logica desde el front santi hijodeperra
+            proveedor.setSexo(Sexo.MASCULINO);
             borrarUsuarioPorID(idUsuario);
 
             proveedorRepositorio.save(proveedor);
@@ -173,6 +215,20 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
+    
+    public void validarClienteAProveedor(Long telefono, String profesion, String profesion2) throws MiExcepcion {
+
+        if (telefono == null) {
+            throw new MiExcepcion("Debe proveer un numero de telefono celular.");
+        }
+        if (telefono.toString().length() >= 15){
+            throw new MiExcepcion("El telefono no puede tener más de 15 caracteres.");
+        }
+        if (profesion.equals(profesion2)){
+            throw new MiExcepcion("Las profesiones no pueden coincidir");
+        }
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

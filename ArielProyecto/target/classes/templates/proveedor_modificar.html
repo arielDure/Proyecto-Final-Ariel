@@ -16,12 +16,21 @@
 
                             
                             <div class="form-group my-3">
-                                <h3 class="card-title">Editate! Proveedor</h3>
+                                <h3 class="card-title">Editar Perfil</h3>
                             </div>
                             <input hidden th:value="${proveedor.id}" name="idProveedor">
                             <div class="form-group my-3">
                                 <input type="text" class="form-control" name="nombre"
                                     th:value="${proveedor.nombre}">
+                            </div>
+                            <div class="form-group my-3">
+                                <select name="sexo">
+                                    <option th:each="sexo:${sexos}"
+                                            th:value="${sexo}"
+                                            th:text="${sexo}">
+
+                                    </option>
+                                </select>
                             </div>
                             <div class="form-group my-3">
                                 <input type="email" class="form-control" name="email" placeholder="EMAIL"
@@ -48,6 +57,7 @@
                                     </option>
                                 </select>
                             </div>
+                            <h5 style="color:grey;">Otro Servicio</h5>
                             <div class="form-group my-3">
                                 <select name="profesion2">
                                     <option th:each="profesion2:${profesionesExtra}" th:value="${profesion2}"
@@ -60,8 +70,16 @@
                                 <input type="number" class="form-control" name="telefono" placeholder="TELEEFONO"
                                     th:value="${proveedor.telefono}">
                             </div>
+                            <h5 style="color:grey;">Ingrese una presentación</h5>
+                            <div>
+                                <textarea name="presentacion" class="form-control" cols="10" rows="5" th:value="${proveedor.presentacion}" placeholder="Presentación"></textarea>
+                            </div>
+                            <h5 style="color:grey;">Ingrese una descripción</h5>
+                            <div>
+                                <textarea name="descripcion" class="form-control" cols="20" rows="10" th:value="${proveedor.descripcion}" placeholder="Descripción"></textarea>
+                            </div>
 
-                            <button type="submit" class="btn btn-primary mt-3 botones">Actualizar</button>
+                            <button type="submit" class="btn btn-primary mt-3 botones">Aceptar</button>
 
                             <div class="divVolver">
                                 <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
