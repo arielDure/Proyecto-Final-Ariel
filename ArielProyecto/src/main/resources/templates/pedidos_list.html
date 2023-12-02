@@ -5,86 +5,135 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service-app</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Service-app</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/pedidos.css">
-</head>
+    </head>
 
-<body>
-    <div th:replace="/fragments/navbar_all :: div"></div>
-    <br>
-    
-    
-    <div sec:authorize="hasRole('PROVEEDOR')" class="cartas">
-        <div th:each="contrato : ${contratos}" class="card">
-            <h5 class="card-header" th:text="${contrato.usuario.nombre}"></h5>
-            <div class="card-body">
-                <p class="card-text" th:text="${contrato.requisitos}"></p>
-                <a th:href="@{/contrato/presupuestoProveedor/__${contrato.id}__}" class="btn btn-primary">Presupuestar</a>
-                <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+    <body>
+        <div th:replace="/fragments/navbar_all :: div"></div>
+        <br>
+
+
+
+
+
+        <div sec:authorize="hasRole('PROVEEDOR')" class="cartas">
+            <div th:each="contrato : ${contratosPrecioNull}" class="card">
+
+                <!-- NO TOCAR HAY QUE ESPERAR UNA QUERY 
+                <div th:if="${contrato.precio == null}">
+                       <h5 class="card-header" th:text="${contrato.usuario.nombre}" style="background-color: orangered;color: white;"></h5>
+                       <h6>PEDIDO DE CLIENTE</h6>
+                       <div class="card-body">
+                           <p class="card-text" th:text="${contrato.requisitos}"></p>
+                           <a th:href="@{/contrato/presupuestoProveedor/__${contrato.id}__}" class="btn btn-primary">Presupuestar</a>
+                           <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+   
+   
+   
+                       </div>
+                   </div>
+                </div> -->
+                <div th:each="contrato : ${contratos}" class="card">
+                    <div th:if="${contrato.precio == null}">
+                        <h5 class="card-header" th:text="${contrato.usuario.nombre}" style="background-color: orangered;color: white;"></h5>
+                        <h6>PEDIDO DE CLIENTE</h6>
+                        <div class="card-body">
+                            <p class="card-text" th:text="${contrato.requisitos}"></p>
+                            <a th:href="@{/contrato/presupuestoProveedor/__${contrato.id}__}" class="btn btn-primary">Presupuestar</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+
+
+
+                        </div>
+                    </div>
+
+                    <div th:if="${contrato.precio != null && contrato.respuestaUsuario == null}">
+                        <h5 class="card-header" th:text="${contrato.usuario.nombre}" style="background-color: blue;color: white;"></h5>
+                        <h6>ESPERA DE RESPUESTA CLIENTE</h6>
+                        <div class="card-body">
+                            <p class="card-text" th:text="${contrato.requisitos}"></p>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+
+
+
+                        </div>
+                    </div>
+
+                    <div th:if="${contrato.respuestaUsuario == true && contrato.respuestaProveedor == true}">
+
+                        <h5 class="card-header" th:text="${contrato.usuario.nombre}" style="background-color: green;color: white;"></h5>
+                        <h6>TRABAJO EN CURSO</h6>
+                        <div class="card-body">
+                            <p class="card-text" th:text="${contrato.requisitos}"></p>
+                            <a th:href="@{/contrato/trabajoFinalizado/__${contrato.id}__}" class="btn btn-primary">Trabajo Finalizado</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </div>
-    
-    
-    
-    
-    <div sec:authorize="hasRole('USUARIO')" class="cartas">
-        <div th:each="contrato : ${contratos}" class="card">
-            <div th:if="${contrato.precio == null}">
-                <h5 class="card-header" th:text="${contrato.proveedor.nombre}" style="background-color: orangered;color: white;"></h5>
-            <!--ESTO SE MUESTRA CUANDO EL USUARIO ENVIO LA PRIMER PETICION -->
-            <div class="card-body"  >
-                  <h5>PENDIENTE A RESPUESTA DE PROVEEDOR</h5>
-                  <div style="display:flex;align-items: center;justify-content: center;" th:if="${contrato.precio != null}">
-                   <h4>$</h4>
-                  <h5 class="card-header" th:text="${contrato.precio}" style="color:black;"></h5>
-                  </div>
-              
-              <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+
+
+
+
+            <div sec:authorize="hasRole('USUARIO')" class="cartas">
+                <div th:each="contrato : ${contratos}" class="card">
+                    <div th:if="${contrato.precio == null}">
+                        <h5 class="card-header" th:text="${contrato.proveedor.nombre}" style="background-color: orangered;color: white;"></h5>
+                        <!--ESTO SE MUESTRA CUANDO EL USUARIO ENVIO LA PRIMER PETICION -->
+                        <div class="card-body"  >
+                            <h5>PENDIENTE A RESPUESTA DE PROVEEDOR</h5>
+                            <div style="display:flex;align-items: center;justify-content: center;" th:if="${contrato.precio != null}">
+                                <h4>$</h4>
+                                <h5 class="card-header" th:text="${contrato.precio}" style="color:black;"></h5>
+                            </div>
+
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                        </div>
+
+
+                    </div>
+                    <!--ESTO SE MUESTRA CUANDO EL PROVEEDOR RESPONDIO LA PETICION -->
+                    <div th:if="${contrato.precio != null && contrato.respuestaUsuario == null}">
+                        <h5 class="card-header" th:text="${contrato.proveedor.nombre}" style="background-color: blue;color: white;"></h5>
+                        <div class="card-body" >
+                            <h5> PRESUPUESTO DEL PROVEEDOR </h5>
+                            <div style="display:flex;align-items: center;justify-content: center;" th:if="${contrato.precio != null}">
+                                <h4>$</h4>
+                                <h5 class="card-header" th:text="${contrato.precio}" style="color:black;"></h5>
+                            </div>
+
+                            <a th:href="@{/contrato/contratoSolicitado/__${contrato.id}__}" class="btn btn-primary">Ver Detalles</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+
+                        </div>
+
+
+                    </div>
+                    <!--ESTO SE MUESTRA CUANDO EL TRABAJO ESTA EN CURSO-->
+                    <div th:if="${contrato.respuestaUsuario == true && contrato.respuestaProveedor == true}">
+                        <h5 class="card-header" th:text="${contrato.proveedor.nombre}" style="background-color: green;color: white;"></h5>
+                        <div class="card-body" >
+                            <h5> TRABAJO EN CURSO </h5>
+                            <div style="display:flex;align-items: center;justify-content: center;" th:if="${contrato.precio != null}">
+                                <h4>$</h4>
+                                <h5 class="card-header" th:text="${contrato.precio}" style="color:black;"></h5>
+                            </div>
+
+                            <a th:href="@{/contrato/contratoSolicitado/__${contrato.id}__}" class="btn btn-primary">Ver Detalles</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            
-            </div>
-               <!--ESTO SE MUESTRA CUANDO EL PROVEEDOR RESPONDIO LA PETICION -->
-             <div th:if="${contrato.precio != null && contrato.respuestaUsuario == null}">
-                    <h5 class="card-header" th:text="${contrato.proveedor.nombre}" style="background-color: blue;color: white;"></h5>
-             <div class="card-body" >
-                 <h5> PRESUPUESTO DEL PROVEEDOR </h5>
-                  <div style="display:flex;align-items: center;justify-content: center;" th:if="${contrato.precio != null}">
-                   <h4>$</h4>
-                  <h5 class="card-header" th:text="${contrato.precio}" style="color:black;"></h5>
-                  </div>
-              
-                <a th:href="@{/contrato/contratoSolicitado/__${contrato.id}__}" class="btn btn-primary">Ver Detalles</a>
-                <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
-          
-            </div>
-                    
-                    
-             </div>
-                <!--ESTO SE MUESTRA CUANDO EL TRABAJO ESTA EN CURSO-->
-               <div th:if="${contrato.respuestaUsuario == true && contrato.respuestaProveedor == true}">
-                    <h5 class="card-header" th:text="${contrato.proveedor.nombre}" style="background-color: green;color: white;"></h5>
-             <div class="card-body" >
-                 <h5> TRABAJO EN CURSO </h5>
-                  <div style="display:flex;align-items: center;justify-content: center;" th:if="${contrato.precio != null}">
-                   <h4>$</h4>
-                  <h5 class="card-header" th:text="${contrato.precio}" style="color:black;"></h5>
-                  </div>
-              
-                <a th:href="@{/contrato/contratoSolicitado/__${contrato.id}__}" class="btn btn-primary">Ver Detalles</a>
-                  <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
-            </div>
-             </div>
-        </div>
-    </div>
-    <footer th:replace="/fragments/footer :: footer"></footer>
-    <div th:replace="/fragments/script :: div"></div>
-</body>
- 
+            <footer th:replace="/fragments/footer :: footer"></footer>
+            <div th:replace="/fragments/script :: div"></div>
+    </body>
+
 </html>

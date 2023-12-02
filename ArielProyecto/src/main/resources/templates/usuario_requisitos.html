@@ -17,8 +17,9 @@
                   <input hidden type="text" name="idUsuario" th:value="${usuario.id}">
               </div>
             <button type="submit" class="btn btn-primary">Enviar Requerimientos</button>
-            <button th:href="@{/}" class="btn btn-primary">Cancelar</button>
           </form>
+        
+          <a th:href="@{/}" class="btn btn-primary">Cancelar</a>
     </main>
 
     <footer th:replace="/fragments/footer :: footer"></footer>

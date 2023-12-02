@@ -122,6 +122,9 @@ h4{
     font-family: 'Krona One', sans-serif;	
 }
 
+.carta .card-top {
+
+}
 
 
 .carta .card-body{
@@ -140,6 +143,7 @@ h4{
     /* border: 2px solid black; */
     flex: 1.5;
     margin-left: 20px;
+    border:1.5px solid;
 
 }
 

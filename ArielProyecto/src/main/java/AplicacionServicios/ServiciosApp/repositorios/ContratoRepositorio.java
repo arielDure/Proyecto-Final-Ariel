@@ -22,4 +22,16 @@ public interface ContratoRepositorio extends JpaRepository<Contrato, String> {
     @Query("SELECT c FROM Contrato c WHERE c.proveedor.id LIKE :proveedor")
     List<Contrato> buscarPorProveedorId(@Param("proveedor") String id);
     
+//    @Query("SELECT c FROM Contrato c WHERE c.proveedor.id AND c.precio = null LIKE :proveedor")
+//    public List<Contrato> buscarPorProveedorPrecio(@Param("proveedor") String id);
+    
+     @Query("SELECT c FROM Contrato c WHERE c.proveedor.id = :idProveedor AND c.precio = null")
+    public List<Contrato> buscarPorProveedorPrecio2(@Param("idProveedor") String idProveedor);
+    
+// SANTI TIENE QUE TOQUETEAR 
+//    @Query("SELECT c FROM Contrato c WHERE c.proveedor.id AND (c.precio != null AND c.respuestaUsuario = null) LIKE :proveedor")
+//    public List<Contrato> buscarPorProveedorRespNull(@Param("proveedor") String id);
+//
+//    @Query("SELECT c FROM Contrato c WHERE c.proveedor.id AND (c.respuestaUsuario = true AND c.respuestaProveedor = true LIKE :proveedor")
+//    public List<Contrato> buscarPorProveedorRespuesta(@Param("proveedor") String id);
 }

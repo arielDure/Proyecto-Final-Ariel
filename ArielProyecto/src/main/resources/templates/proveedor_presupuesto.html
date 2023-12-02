@@ -32,9 +32,10 @@
             <input type="date" name="inicioDelTrabajo">
             <div>
                 <button type="submit" name="accion" value="aceptar">Enviar <br>presupuesto</button>
-                <button type="submit" name="accion" value="rechazar">rechazar <br>presupuesto</button>
+         
             </div>
         </form>
+              <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar presupuesto</a>
     </main>
 
     <footer th:replace="/fragments/footer :: footer"></footer>

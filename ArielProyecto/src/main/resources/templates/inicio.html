@@ -1,89 +1,80 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="/fragments/head :: head"></head>
-<!-- Pasé los links de estilo al head -->
+    <head th:replace="/fragments/head :: head"></head>
+    <!-- Pasé los links de estilo al head -->
 
-<body>
-    <div th:replace="/fragments/navbar_all :: div"></div>
-    <!-- <br>-->
-    <div th:replace="/fragments/error :: div"></div>
-    <div class="fondo">
-        <header class="head">
-
-            <!-- <br><br>-->
-            <div class="cardsSub">
-                <span class="cards" th:if="${session.usuariosession == null}">
-                    <div th:replace="/fragments/prov_cards :: div"></div>
-                </span>
-                <span th:if="${session.usuariosession != null}">
-                    <div class="imagen">
-                        <img th:if="${session.usuariosession.imagen != null}"
-                            th:src="@{/imagen/perfilUsuario/__${session.usuariosession.id}__}">
-                    </div>
-                </span>
-                <div class="subtitulo">
-                    <h1 class="titulo">Web Services</h1>
-                    <span>
-                        <p th:if="${session.usuariosession != null}">
-                            Te damos la bienvenida
-                            <span th:text="${session.usuariosession.nombre}" class="user-name-style"></span>
-                        </p>
+    <body>
+        <div th:replace="/fragments/navbar_all :: div"></div>
+        <!-- <br>-->
+        <div th:replace="/fragments/error :: div"></div>
+        <div class="fondo">
+            <header class="head">
+             
+                <!-- <br><br>-->
+                <div class="cardsSub">
+                    <span class="cards" th:if="${session.usuariosession == null}">
+                        <div th:replace="/fragments/prov_cards :: div"></div>
                     </span>
-                    <span th:if="${session.usuariosession == null}">Te damos la bienvenida </span>
+                    <span th:if="${session.usuariosession != null}">
+                        <div class="imagen">
+                    <img th:if="${session.usuariosession.imagen != null}"  th:src="@{/imagen/perfilUsuario/__${session.usuariosession.id}__}" >
+                </div>
                     </span>
-                    a la plataforma
-                    <br>de servicios de <strong class="parrafo">CHACRAS DE CORIA</strong>
-                </div>
-            </div>
-
-        </header>
-    </div>
-    <!-- Están los servicios en forma de cards -->
-    <br>
-    <h4><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512">
-            <path
-                d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-        </svg> Conocé más sobre nuestros proveedores <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12"
-            viewBox="0 0 384 512">
-            <path
-                d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-        </svg></h4>
-
-    <div class="container-card">
-
-        <div class="carta" th:each="proveedor : ${proveedores}">
-            <div class="card-top"></div>
-            <div class="card-body">
-                <div class="imagen">
-                    <img th:src="@{/imagen/perfilProveedor/__${proveedor.id}__}" alt="">
-                </div>
-                <div class="datos">
-                    <h2 th:text="${proveedor.nombre}"></h2>
-                    <h3>★★★☆☆</h3>
-                    <h4>4 reseñas</h4>
-                    <a th:href="@{/proveedor/perfilProveedor/__${proveedor.id}__}" alt="imagen"> Ir al Perfil</a>
-                </div>
-                <div class="contenedor-cartas">
-                    <div class="div-oculto">
-                        <div class="descripcion">
-                            <h2>¿Que ofrezco?</h2>
-                            <h3 th:text="${proveedor.presentacion}"></h3>
-                        </div>
-                    </div>
-                    <div class="info">
-                        <h2 th:text="${proveedor.profesion1}"></h2>
-                        <h2 th:unless="${proveedor.profesion2 == T(AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra).NO}"
-                            th:text="${proveedor.profesion2}"></h2>
-
+                    <div class="subtitulo">
+                           <h1 class="titulo">Web Services</h1>
+                        <span>
+                            <p th:if="${session.usuariosession != null}">
+                                Te damos la bienvenida
+                                <span th:text="${session.usuariosession.nombre}" class="user-name-style"></span>
+                            </p>
+                        </span>
+                       <span th:if="${session.usuariosession == null}">Te damos la bienvenida </span>
+                        </span>
+                        a la plataforma
+                        <br>de servicios de <strong class="parrafo">CHACRAS DE CORIA</strong>
                     </div>
                 </div>
+
+            </header>
+</div>
+            <!-- Están los servicios en forma de cards -->
+            <br>
+           <h4><svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><<path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> Conocé más sobre nuestros proveedores <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg></h4>
+
+         <div class="container-card">
+    
+    <div class="carta" th:each="proveedor : ${proveedores}">
+        <div class="card-top"></div>
+        <div class="card-body">
+            <div class="imagen">
+                <img th:src="@{/imagen/perfilProveedor/__${proveedor.id}__}" alt="">
             </div>
+            <div class="datos">
+            <h2 th:text="${proveedor.nombre}"></h2>
+            <h3>★★★☆☆</h3>
+            <h4>4 reseñas</h4>
+            <a th:href= "@{/proveedor/perfilProveedor/__${proveedor.id}__}" alt="imagen"> Ir al Perfil</a>
+            </div>
+            <div class="contenedor-cartas">
+                <div class="div-oculto">
+                <div class="descripcion">
+                      <h2>¿Que ofrezco?</h2>
+                      <h3 th:text="${proveedor.presentacion}"></h3>
+                  </div>
+                </div>
+                <div class="info">
+                    <h2 th:text="${proveedor.profesion1}"></h2>
+                    <h2 th:unless="${proveedor.profesion2 == T(AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra).NO}" th:text="${proveedor.profesion2}"></h2>
+                   
+                 </div>
+              </div>
         </div>
     </div>
-
-    <footer th:replace="/fragments/footer :: footer"></footer>
-    <div th:replace="/fragments/script :: div"></div>
-</body>
+   </div>
+         
+        <footer th:replace="/fragments/footer :: footer"></footer>
+        <div th:replace="/fragments/script :: div"></div>
+    </body>
 
 </html>

@@ -30,7 +30,7 @@ public class Proveedor extends Usuario {
 
     /* figurarnos como asignar mas de un rol en un proveedor. pedir ayuda a primera hora! */
     private Long telefono;
-    private Long contactos;
+    private Integer contactos;
     private String presentacion;
     private String descripcion;
     private Double promedio;
@@ -75,13 +75,15 @@ public class Proveedor extends Usuario {
         this.telefono = telefono;
     }
 
-    public Long getContactos() {
+    public Integer getContactos() {
         return contactos;
     }
 
-    public void setContactos(Long contactos) {
+    public void setContactos(Integer contactos) {
         this.contactos = contactos;
     }
+
+    
 
     public String getPresentacion() {
         return presentacion;

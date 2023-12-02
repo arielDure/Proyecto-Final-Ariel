@@ -1,6 +1,17 @@
+body{
+    background-color: antiquewhite;
+    /*background: linear-gradient(500deg, antiquewhite, whitesmoke);*/
+}
 .cartas{
     display: flex;
     gap:50px; 
     justify-content: center;
     flex-wrap: wrap; 
+}
+
+.containerFooter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
 }

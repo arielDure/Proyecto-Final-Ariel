@@ -108,11 +108,11 @@ public class ContratoServicio {
         if(respuesta.isPresent()){
             Contrato contrato = respuesta.get();
 
-            if(contrato.getRespuestaProveedor() == false && contrato.getRespuestaUsuario() == false) {
+            if(contrato.getRespuestaProveedor() == true && contrato.getRespuestaUsuario() == true) {
                 contrato.setActivo(false);
                
             }
-             proveedorServicio.sumarContacto(contrato.getProveedor().getId());
+            proveedorServicio.sumarContacto(contrato.getProveedor().getId());
             contratoRepositorio.save(contrato);
         }
     }
@@ -129,6 +129,11 @@ public class ContratoServicio {
     
     public Contrato getOne(String id){
         return contratoRepositorio.getOne(id);
+    }
+    
+    public List<Contrato> listarPorPrecioNull(String idProveedor){
+        return contratoRepositorio.buscarPorProveedorPrecio2(idProveedor);
+        
     }
 
 

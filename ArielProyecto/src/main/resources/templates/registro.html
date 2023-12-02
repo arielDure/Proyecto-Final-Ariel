@@ -12,7 +12,7 @@
 
     <body>
         <div class="cuerpo">
-            <div th:replace="/fragments/error :: div"></div>
+          <div th:replace="/fragments/error :: div"></div>
             <br>
             <p class="d-inline-flex gap-1">
                 <a class="btn btn-primary" data-bs-toggle="collapse" href="#usuario" role="button" aria-expanded="false"
@@ -25,58 +25,58 @@
                 <!--formulario de Usuario-->
                 <div class="col">
                     <div class="collapse multi-collapse" id="usuario">
-                         <!-- <div class="card card-body">-->
-                           <div class="container">
-                                <div class="container-fluid m-5 contenedor">
+                        <!-- <div class="card card-body">-->
+                        <div class="container">
+                            <div class="container-fluid m-5 contenedor">
 
-                                    <form class="center-form" th:action="@{/usuario/registroUsuario}" method="POST"
-                                          enctype="multipart/form-data">
-
-
-                                        <div class="form-group my-3">
-                                            <h3 class="card-title">Registrate como usuario!</h3>
-                                        </div>
-                                        <div class="form-group my-3">
-                                            <input type="text" class="form-control" name="nombre" placeholder="NOMBRE"
-                                                   th:value="${nombre}">
-                                        </div>
-                                        <div class="form-group my-3">
-                                            <select name="sexo">
-                                                <option th:each="sexo:${sexos}"
-                                                        th:value="${sexo}"
-                                                        th:text="${sexo}">
-
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group my-3">
-                                            <input type="email" class="form-control" name="email" placeholder="EMAIL"
-                                                   th:value="${email}">
-                                        </div>
+                                <form class="center-form" th:action="@{/usuario/registroUsuario}" method="POST"
+                                      enctype="multipart/form-data">
 
 
-                                        <div class="form-group my-3">
-                                            <input type="file" class="form-control" name="archivo"><!-- Aca agrega la imagen-->
-                                        </div>
+                                    <div class="form-group my-3">
+                                        <h3 class="card-title">Registrate como usuario!</h3>
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <input type="text" class="form-control" name="nombre" placeholder="NOMBRE"
+                                               th:value="${nombre}">
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <select name="sexo">
+                                            <option th:each="sexo:${sexos}"
+                                                    th:value="${sexo}"
+                                                    th:text="${sexo}">
+
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <input type="email" class="form-control" name="email" placeholder="EMAIL"
+                                               th:value="${email}">
+                                    </div>
 
 
-                                        <div class="form-group my-3">
-                                            <input type="password" class="form-control" name="password" placeholder="CONTRASEÑA"
-                                                   th:value="${password}">
-                                        </div>
-                                        <div class="form-group my-3">
-                                            <input type="password" class="form-control" name="password2"
-                                                   placeholder="REPETIR CONTRASEÑA" th:value="${password2}">
-                                        </div>
+                                    <div class="form-group my-3">
+                                        <input type="file" class="form-control" name="archivo"><!-- Aca agrega la imagen-->
+                                    </div>
 
-                                        <button type="submit" class="btn btn-primary mt-3 botones">Registrarme</button>
 
-                                        <div class="divVolver">
-                                            <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
-                                        </div>
-                                    </form>
+                                    <div class="form-group my-3">
+                                        <input type="password" class="form-control" name="password" placeholder="CONTRASEÑA"
+                                               th:value="${password}">
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <input type="password" class="form-control" name="password2"
+                                               placeholder="REPETIR CONTRASEÑA" th:value="${password2}">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary mt-3 botones">Registrarme</button>
+
+                                    <div class="divVolver">
+                                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                                    </div>
+                                </form>
                                 <!--</div>-->
-                           </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,87 +85,87 @@
                     <div class="collapse multi-collapse" id="proveedor">
                         <!-- <div class="card card-body">-->
                         <div class="container">
-                        <div class="container-fluid m-5 contenedor">
+                            <div class="container-fluid m-5 contenedor">
 
-                            <form class="center-form" th:action="@{/proveedor/registroProveedor}" method="POST"
-                                  enctype="multipart/form-data">
-
-
-                                <div class="form-group my-3">
-                                    <h3 class="card-title">Registrate como Proveedor!</h3>
-                                </div>
-                                <div class="form-group my-3">
-                                    <input type="text" class="form-control" name="nombre" placeholder="NOMBRE"
-                                           th:value="${nombre}">
-                                </div>
-                                <div class="form-group my-3">
-                                    <select name="sexo">
-                                        <option th:each="sexo:${sexos}"
-                                                th:value="${sexo}"
-                                                th:text="${sexo}">
-
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group my-3">
-                                    <input type="email" class="form-control" name="email" placeholder="EMAIL"
-                                           th:value="${email}">
-                                </div>
-                                <div class="form-group my-3">
-                                    <input type="file" class="form-control" name="archivo"><!-- Aca agrega la imagen-->
-                                </div>
+                                <form class="center-form" th:action="@{/proveedor/registroProveedor}" method="POST"
+                                      enctype="multipart/form-data">
 
 
-                                <div class="form-group my-3">
-                                    <input type="password" class="form-control" name="password" placeholder="CONTRASEÑA"
-                                           th:value="${password}">
-                                </div>
-                                <div class="form-group my-3">
-                                    <input type="password" class="form-control" name="password2"
-                                           placeholder="REPETIR CONTRASEÑA" th:value="${password2}">
-                                </div>
+                                    <div class="form-group my-3">
+                                        <h3 class="card-title">Registrate como Proveedor!</h3>
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <input type="text" class="form-control" name="nombre" placeholder="NOMBRE"
+                                               th:value="${nombre}">
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <select name="sexo">
+                                            <option th:each="sexo:${sexos}"
+                                                    th:value="${sexo}"
+                                                    th:text="${sexo}">
+
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <input type="email" class="form-control" name="email" placeholder="EMAIL"
+                                               th:value="${email}">
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <input type="file" class="form-control" name="archivo"><!-- Aca agrega la imagen-->
+                                    </div>
 
 
-                                <h5 style="color:black;text-align: left;">Profesión</h5>
-                                <div class="form-group my-3">
-                                    <select name="profesion1">
-                                        <option th:each="profesion:${profesiones}"
-                                                th:value="${profesion}"
-                                                th:text="${profesion}">
-
-                                        </option>
-                                    </select>
-                                </div>
-                                <h5 style="color:black;text-align: left;">Otra Profesión</h5>
-                                <div class="form-group my-3">
-                                    <select name="profesion2">
-                                        <option th:each="profesion2:${profesionesExtra}"
-                                                th:value="${profesion2}"
-                                                th:text="${profesion2}">
-
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group my-3">
-                                    <input type="number" class="form-control" name="telefono" placeholder="TELEFONO"
-                                           th:value="${telefono}">
-                                </div>
-                                <h5 style="color: black;text-align: start;">En qué te destacás</h5>
-
-                                <div class="form-group my-3">
-                                    <input type="text" class="form-control" name="presentacion" placeholder="Me destaco en..."
-                                           >
-                                </div>
+                                    <div class="form-group my-3">
+                                        <input type="password" class="form-control" name="password" placeholder="CONTRASEÑA"
+                                               th:value="${password}">
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <input type="password" class="form-control" name="password2"
+                                               placeholder="REPETIR CONTRASEÑA" th:value="${password2}">
+                                    </div>
 
 
-                                <button type="submit" class="btn btn-primary mt-3 botones">Registrarme</button>
+                                    <h5 style="color:black;text-align: left;">Profesión</h5>
+                                    <div class="form-group my-3">
+                                        <select name="profesion1">
+                                            <option th:each="profesion:${profesiones}"
+                                                    th:value="${profesion}"
+                                                    th:text="${profesion}">
 
-                                <div class="divVolver">
-                                    <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
-                                </div>
-                            </form>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <h5 style="color:black;text-align: left;">Otra Profesión</h5>
+                                    <div class="form-group my-3">
+                                        <select name="profesion2">
+                                            <option th:each="profesion2:${profesionesExtra}"
+                                                    th:value="${profesion2}"
+                                                    th:text="${profesion2}">
+
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group my-3">
+                                        <input type="number" class="form-control" name="telefono" placeholder="TELEFONO"
+                                               th:value="${telefono}">
+                                    </div>
+                                    <h5 style="color: black;text-align: start;">En qué te destacás</h5>
+
+                                    <div class="form-group my-3">
+                                        <input type="text" class="form-control" name="presentacion" placeholder="Me destaco en..."
+                                               >
+                                    </div>
+
+
+                                    <button type="submit" class="btn btn-primary mt-3 botones">Registrarme</button>
+
+                                    <div class="divVolver">
+                                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <!--</div>-->
                 </div>

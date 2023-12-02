@@ -15,15 +15,24 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false" th:if="${session.usuariosession != null}">Profesiones</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Plomero</a></li>
-                    <li><a class="dropdown-item" href="#">Gasista</a></li>
-                    <li><a class="dropdown-item" href="#">Pintor</a></li>
-                    <li><a class="dropdown-item" href="#">Albañil</a></li>
-                    <li><a class="dropdown-item" href="#">Electricista</a></li>
+
+                    <li><a class="dropdown-item" href="#">Todas</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Todas</a></li>
+                    <li><a class="dropdown-item" href="#">Albañil</a></li>
+                    <li><a class="dropdown-item" href="#">Catering</a></li>
+                    <li><a class="dropdown-item" href="#">Electricista</a></li>
+                    <li><a class="dropdown-item" href="#">Gasista</a></li>
+                    <li><a class="dropdown-item" href="#">Jardinero</a></li>
+                    <li><a class="dropdown-item" href="#">Maestranza</a></li>
+                    <li><a class="dropdown-item" href="#">Niñera</a></li>
+                    <li><a class="dropdown-item" href="#">Plomero</a></li>
+                    <li><a class="dropdown-item" href="#">Piletero</a></li>
+                    <li><a class="dropdown-item" href="#">Pintor</a></li>
+                    <li><a class="dropdown-item" href="#">Seguridad</a></li>
+                    <li><a class="dropdown-item" href="#">Veterinaria</a></li>
+
                 </ul>
             </li>
 
@@ -39,6 +48,7 @@
                     <li><a class="dropdown-item" th:href="@{/listarProveedores}">Listar proveedores</a></li>
                 </ul>
             </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#"
                    id="navbarDropdown" role="button" sec:authorize="hasRole('ADMIN')" data-bs-toggle="dropdown" aria-expanded="false">

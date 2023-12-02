@@ -70,13 +70,13 @@ public class ProveedorServicio {
         proveedor.setActivo(true);
         proveedor.setProfesion1(profesion1);
         proveedor.setPresentacion(presentacion);
+        proveedor.setContactos(0);
         if(profesion2.equals(ProfesionExtra.NO)){
             proveedor.setProfesion2(null);
         }else{
             proveedor.setProfesion2(profesion2);
         }
         proveedor.setTelefono(telefono);
-        proveedor.setContactos(null);
         proveedor.setSexo(sexo);
         Imagen imagen = null;
 
@@ -265,6 +265,8 @@ public class ProveedorServicio {
        return proveedorRepositorio.getOne(id);
     }
      
+     
+     @Transactional
      public void sumarContacto(String id){
 
         Optional<Proveedor> respuesta = proveedorRepositorio.findById(id);
@@ -272,7 +274,7 @@ public class ProveedorServicio {
         if(respuesta.isPresent()){
             Proveedor proveedor = respuesta.get();
 
-            Long cont = proveedor.getContactos();
+            Integer cont = proveedor.getContactos();
 
             proveedor.setContactos(cont + 1);
 
@@ -281,6 +283,8 @@ public class ProveedorServicio {
 
     }
      
+     
+     @Transactional
      public void calcularPromedio(String id){
 
         int suma = 0;

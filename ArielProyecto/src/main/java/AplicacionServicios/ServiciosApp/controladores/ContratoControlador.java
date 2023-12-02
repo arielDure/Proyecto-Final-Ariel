@@ -85,6 +85,8 @@ public class ContratoControlador {
         if (logeado.getRol().equals(Rol.PROVEEDOR)) {
             List<Contrato> contratos = contratoServicio.listaContratoProveedor(logeado.getId());
             modelo.put("contratos", contratos);
+            List<Contrato> contratosConPrecio = contratoServicio.listarPorPrecioNull(logeado.getId());
+            modelo.put("contratosPrecioNull", contratosConPrecio);
         }
         if (logeado.getRol().equals(Rol.USUARIO)) {
             List<Contrato> contratos = contratoServicio.listaContratoUsuario(logeado.getId());
@@ -149,6 +151,13 @@ public class ContratoControlador {
     public String cancelarContrato(@PathVariable String id) {
       contratoServicio.cancelarContrato(id);
         return "redirect:../pedidosPendientes";
+    }
+    
+    @GetMapping("/trabajoFinalizado/{id}")
+    public String finalizarTrabajo(@PathVariable String id) {
+        contratoServicio.finalizarContrato(id);
+        return "redirect:../pedidosPendientes";
+        
     }
 
 }

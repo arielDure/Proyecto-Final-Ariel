@@ -65,9 +65,9 @@ public class ProveedorControlador {
             modelo.put("error", e.getMessage());
             modelo.put("nombre", nombre);
             modelo.put("email", email);
-            return "registro.html";
+            return "redirect:/registrar";
         }
-        return "login.html";
+        return "redirect:/login";
     }
 
     @GetMapping("/actualizarProveedor/{id}")
@@ -134,12 +134,12 @@ public class ProveedorControlador {
     @PreAuthorize("hasAnyRole('ROLE_USUARIO','ROLE_ADMIN','ROLE_PROVEEDOR')")
     @GetMapping("/perfilProveedor/{id}")
     public String perfil(ModelMap modelo, HttpSession session, @PathVariable String id) {
+        
 
         List<Resenia> resenias = reseniaServicio.buscarPorProveedorId(id);
         modelo.put("resenias", resenias);
         Proveedor proveedor = proveedorServicio.getOne(id);
         modelo.put("proveedor", proveedor);
-
         return "proveedor_perfil.html";
 
     }

@@ -62,12 +62,12 @@ public class PortalControlador {
          modelo.addAttribute("proveedores", proveedores);
          return "inicio.html";
     }
-  
-    @GetMapping("/registrar")
+    
+   @GetMapping("/registrar")
     public String registrar(ModelMap modelo){
-        
+
         try {
-              List<Sexo> sexos = Arrays.asList(Sexo.values());
+         List<Sexo> sexos = Arrays.asList(Sexo.values());
         modelo.put("sexos", sexos);
         List<Profesion> profesiones = Arrays.asList(Profesion.values());
         modelo.put("profesiones", profesiones);
@@ -78,6 +78,7 @@ public class PortalControlador {
         }
         return "registro.html";
     }
+    
    
 
     @GetMapping("/login")
@@ -97,16 +98,23 @@ public class PortalControlador {
        if(logeado.getRol().toString().equals("ADMIN")){
            return "redirect:/admin/dashboard";
        }
+        
         return "redirect:/";
 
         
     }
+    
     @GetMapping("/listarProveedores")
     public String listaProveedores(ModelMap modelo){
          List<Proveedor> proveedores = proveedorServicio.listarProveedores();
          modelo.addAttribute("proveedores", proveedores);
          return "lista_proveedores.html";
     }
+    
+    
+    
+    
+    
     
     
     

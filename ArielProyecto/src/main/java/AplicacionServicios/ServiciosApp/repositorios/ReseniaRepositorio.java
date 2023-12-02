@@ -35,6 +35,8 @@ public interface ReseniaRepositorio extends JpaRepository<Resenia, String> {
 //    @Query("SELECT u FROM Resenia u WHERE u.id = :id")
 //    public Resenia buscarPorNombreUsuario(@Param("id") String id);
 //    
-      @Query("SELECT c FROM Resenia c WHERE c.proveedor.id LIKE :proveedor")
-     public List<Resenia> buscarPorProveedorId(@Param("proveedor") String id);
+    
+    
+      @Query("SELECT c FROM Resenia c WHERE c.proveedor.id = :idProveedor")
+     public List<Resenia> buscarPorProveedorId(@Param("idProveedor") String idProveedor);
 }

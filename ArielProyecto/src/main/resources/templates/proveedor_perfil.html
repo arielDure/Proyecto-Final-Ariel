@@ -57,12 +57,12 @@
                 <div class="top">
                     <div class="top-izq">
                         <div class="foto">
-                            <img th:src="@{/imagen/perfilUsuario/__${resenia.idUsuario.id}__}" alt="">
+                            <img th:src="@{/imagen/perfilUsuario/__${resenia.usuario.id}__}" alt="">
                         </div>
                     </div>
                     <div class="top-der">
                        
-                        <h4 th:text="${resenia.idUsuario.nombre}"></h4>
+                        <h4 th:text="${resenia.usuario.nombre}"></h4>
                         
                         <h2 th:if="${resenia.calificacion==1}">★☆☆☆☆</h2>
                         <h2 th:if="${resenia.calificacion==2}">★★☆☆☆</h2>

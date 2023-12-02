@@ -32,7 +32,7 @@ public class UsuarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
-    @PostMapping("/registroUsuario")
+   @PostMapping("/registroUsuario")
     public String registroUsuario(MultipartFile archivo, @RequestParam String nombre,
             @RequestParam String email, @RequestParam String password, @RequestParam String password2, ModelMap modelo, Sexo sexo) {
 
@@ -42,14 +42,14 @@ public class UsuarioControlador {
             modelo.put("exito", "Usuario registrado correctamente!");
 
         } catch (MiExcepcion ex) {
-            
+
             modelo.put("error", ex.getMessage());
             List<Sexo> sexos = Arrays.asList(Sexo.values());
             modelo.put("sexos", sexos);
             modelo.put("nombre",nombre);
             modelo.put("email",email);
             return "registro.html";
-        }  
+        }
            return "login.html";
 
     }

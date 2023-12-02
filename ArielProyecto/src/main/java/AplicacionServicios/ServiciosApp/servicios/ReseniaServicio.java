@@ -99,25 +99,14 @@ public class ReseniaServicio {
         }
     }
     
-    public List<Resenia> buscarPorUsuarioId(String idUsuario){
-      List<Resenia> resenias= reseniaRepositorio.findAll();
-      List<Resenia> reseniasDevolver= new ArrayList();
-        for (Resenia resenia : resenias) {
-            if(resenia.getUsuario().getId().equals(idUsuario)){
-                reseniasDevolver.add(resenia);
-            }
-        }
-        return reseniasDevolver;
-    }
-    
+//    public List<Resenia> buscarPorUsuarioId(String usuario){
+//        reseniaRepositorio.listarPorIdUsuario(usuario);
+//    }
+//    
     public List<Resenia> buscarPorProveedorId(String idProveedor){
-      List<Resenia> resenias= reseniaRepositorio.findAll();
-      List<Resenia> reseniasDevolver= new ArrayList();
-        for (Resenia resenia : resenias) {
-            if(resenia.getProveedor().getId().equals(idProveedor)){
-                reseniasDevolver.add(resenia);
-            }
-        }
-        return reseniasDevolver;
+      
+        List<Resenia> resenias = reseniaRepositorio.buscarPorProveedorId(idProveedor);
+        
+        return resenias;
     }
 }
