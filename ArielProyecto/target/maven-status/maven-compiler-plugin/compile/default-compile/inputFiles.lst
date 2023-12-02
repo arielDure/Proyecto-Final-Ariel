@@ -1,5 +1,6 @@
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Usuario.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\SeguridadWeb.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\ContratoArchivadoServicio.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\PortalAdministrador.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Imagen.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\ProveedorServicio.java
@@ -15,6 +16,7 @@ I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\excepciones\MiExcepcion.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\Profesion.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Contrato.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ContratoArchivadoRepositorio.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\UsuarioControlador.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\ImagenControlador.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\ContratoServicio.java
@@ -22,6 +24,7 @@ I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Proveedor.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\ProveedorControlador.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\ReseniaServicio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\ContratoArchivado.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\ServiciosAppApplication.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\ReseniaControlador.java
 I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\repositorios\UsuarioRepositorio.java

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
+body{
+    background-color: antiquewhite;
+    /*background: linear-gradient(500deg, antiquewhite, whitesmoke);*/
+}
 .fondo{
     background-image: url(/img/fondo.jpg);
     background-size:cover;
@@ -11,6 +15,7 @@
     text-align:center;
     font-family:'agbalumo';
     font-size: 10vh;
+    text-shadow: 2px 2px 4px rgba(200, 0, 0, 1);
 }
 .subtitulo{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -18,16 +23,27 @@
     color:rgb(255, 255, 255);
     font-size: 5vh;
 }
+
+h4{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align:center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 .containerFooter{
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+}
+.linea{
+    border-top: 1px solid;
 }
 .parrafo{
     font-family: 'agbalumo';
     color: rgb(253, 253, 253);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-.iconos{
+/*.iconos{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     height: 100vh;
@@ -36,11 +52,11 @@
     max-width: 100%;
     height: auto;
     justify-content: center;
-}
-.plomero{
+}*/
+/*.plomero{
     display: flex;
     justify-content: center;
-}
+}*/
 .cards{
     display: flex;
     justify-content: center;
@@ -56,22 +72,34 @@
     align-items: center;
     justify-content: center;
 }
-.imagenPerfil img{
+/*.imagenPerfil img{
     display: flex;
     min-width: 20vh;
     max-width: 20vh;
 
+}*/
+
+.cardsSub .imagen {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border:#3498db 4px solid;
+    overflow: hidden;
+    position: relative;
 }
 
+.cardsSub .imagen img{
+    /* border: 2px solid black; */
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+
+}
 .user-name-style{
     font-family: 'agbalumo';
-    font-weight: bold;
-    color: black ;  
+    color: black ;
 }
-
-
-
-
 
 .container-card{
 
@@ -91,7 +119,7 @@
     width: 80vh;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
     border: 2px solid black;
-    	font-family: 'Krona One', sans-serif;	
+    font-family: 'Krona One', sans-serif;	
 }
 
 .carta .card-top {
@@ -100,25 +128,27 @@
 
 
 .carta .card-body{
-    /* border: 2px solid black; */
+    /*border: 2px solid black;*/
+    background: linear-gradient(150deg, #13527c, #c9d4ce);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    
+
 }
 
 .carta .card-body .imagen{
     width: 210px;
-	height: 200px;
+    height: 200px;
     /* border: 2px solid black; */
     flex: 1.5;
     margin-left: 20px;
-        
+    border:1.5px solid;
+
 }
 
 .carta .card-body .imagen img{
- 
+
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -141,7 +171,7 @@
 .carta .card-body .datos h2{
     /* border: 2px solid black; */
     margin: 5px 0px 0px 0px;
- 
+
     font-size: 25px;
 
 }
@@ -150,9 +180,9 @@
     /* border: 2px solid black; */
     margin: 0;
     cursor: context-menu;
-	font-size: 30px;
-	color: #FF6B00;
-     
+    font-size: 30px;
+    color: #FF6B00;
+
 }
 
 .carta .card-body .datos h4{
@@ -160,30 +190,30 @@
     margin-top: 0;
     font-size: 15px;
     color: rgb(58, 58, 58);
- 
+
 }
 
 .carta .card-body .datos a{
     transition: 0.2s;
     /* border: 2px solid black; */
     display: inline-block;
-	padding: 10px 20px;
-	font-size: 14px;
-	text-decoration: none;
-	cursor: pointer;
-	background-color: #302CDD; /* Color azul de fondo */
-	color: #ffffff; /* Color blanco de texto */
-	border: none; /* Sin borde */
-	border-radius: 2px; /* Bordes redondeados */
-	line-height: 10px; /* Altura de línea igual a la altura del botón para centrar verticalmente el texto */
-        text-align: center;
-    
+    padding: 10px 20px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #302CDD; /* Color azul de fondo */
+    color: #ffffff; /* Color blanco de texto */
+    border: none; /* Sin borde */
+    border-radius: 2px; /* Bordes redondeados */
+    line-height: 10px; /* Altura de línea igual a la altura del botón para centrar verticalmente el texto */
+    text-align: center;
+
 }
 
 
 
 
-    
+
 
 .contenedor-cartas {
     position: relative;
@@ -194,30 +224,30 @@
     height: 100%;
     overflow: hidden; /* Asegura que el degradado no se salga del contenedor */
 
-    }
-    
-    
-    
-    
-    
-    .info{
-      height: 90px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-    }
-    
-    .info h2{
-     font-size: 18px;
-        
-    }
-    
-    
-    
-    
-    .div-oculto {
+}
+
+
+
+
+
+.info{
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.info h2{
+    font-size: 18px;
+
+}
+
+
+
+
+.div-oculto {
     background-color: #3093A9;
     transition: 0.4s ease-out;
     transform: translateX(103%);
@@ -228,40 +258,40 @@
     width: 100%;
     left: 0;
     top: 0;
-    
-    }
-    
-    .descripcion{
+
+}
+
+.descripcion{
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 5px;
-    }
+}
 
-    .descripcion h2{
-        font-size: 17px;
-        border-bottom: 2px solid black;
-       
-    }
-    
-    .descripcion h3{
-        font-size: 17px;
+.descripcion h2{
+    font-size: 17px;
+    border-bottom: 2px solid black;
 
-       
-    }
-    
-    .contenedor-cartas:hover .div-oculto {
+}
+
+.descripcion h3{
+    font-size: 17px;
+
+
+}
+
+.contenedor-cartas:hover .div-oculto {
     transform: translateX(0); /* Muestra el div moviéndolo hacia la izquierda */
     transition: transform 0.6s ease;
-    }
+}
 
-    .carta .card-body .datos a:hover{
-        background-color: #001f3f;
-        transition: 0.3s;
-    }
-    
-    .detalle{
-        color: black;
-    }
+.carta .card-body .datos a:hover{
+    background-color:#13527c ;
+    transition: 0.3s;
+}
+
+.detalle{
+    color: black;
+}

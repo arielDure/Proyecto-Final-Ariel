@@ -27,25 +27,24 @@
             <tbody>
                 <!-- Filas de ejemplo, puedes agregar más según tus necesidades -->
                 <tr>
-                    <td th:value="${contrato.requisitos}"></td>
-                    <td th:value="${contrato.horasAprox}"></td>
-                    <td th:value="${contrato.precio}"></td>
-                    <td th:value="${contrato.precio}"></td>
+                    <td th:text="${contrato.requisitos}"></td>
+                    <td th:text="${contrato.horasAprox}"></td>
+                    <td th:text="${contrato.precio}"></td>
+                    <td th:text="${contrato.precio}"></td>
                 </tr>
                 <!-- Puedes agregar más filas según tus productos -->
             </tbody>
             <tfoot>
                 <tr class="total">
                     <td colspan="3">Total</td>
-                    <td th:value="${contrato.precio}"></td>
+                    <td th:text="${contrato.precio}"></td>
                     <!-- Ajusta este valor según el cálculo de tu presupuesto -->
                 </tr>
             </tfoot>
         </table>
-        <form th:action="@{/contrato/inciarContrato}" method="POST">
-            <button type="submit">Aceptar<br>trabajo</button>
-            <a th:href="@{/contrato/rechazar}" class="btn btn-secondary my-2 botonVolver botones">Rechazar</a>
-        </form>
+             <a th:href="@{/contrato/contratoConfirmacion/__${contrato.id}__}" class="btn btn-primary">Aceptar</a>   
+             <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+       
     </main>
 
     <footer th:replace="/fragments/footer :: footer"></footer>

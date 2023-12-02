@@ -17,11 +17,6 @@ and open the template in the editor.
     <body>
         <div th:replace="/fragments/navbar_all :: div"></div>
         <br>
-
-
-
-
-
         <div sec:authorize="hasRole('PROVEEDOR')" class="cartas">
             <div th:each="contrato : ${contratosPrecioNull}" class="card">
 
@@ -45,8 +40,8 @@ and open the template in the editor.
                         <h6>PEDIDO DE CLIENTE</h6>
                         <div class="card-body">
                             <p class="card-text" th:text="${contrato.requisitos}"></p>
-                            <a th:href="@{/contrato/presupuestoProveedor/__${contrato.id}__}" class="btn btn-primary">Presupuestar</a>
-                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                            <a th:href="@{/contrato/presupuestoProveedor/__${contrato.id}__}" class="btn btn-success">Presupuestar</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-danger">Cancelar Pedido</a>
 
 
 
@@ -58,7 +53,7 @@ and open the template in the editor.
                         <h6>ESPERA DE RESPUESTA CLIENTE</h6>
                         <div class="card-body">
                             <p class="card-text" th:text="${contrato.requisitos}"></p>
-                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-danger">Cancelar Pedido</a>
 
 
 
@@ -72,7 +67,7 @@ and open the template in the editor.
                         <div class="card-body">
                             <p class="card-text" th:text="${contrato.requisitos}"></p>
                             <a th:href="@{/contrato/trabajoFinalizado/__${contrato.id}__}" class="btn btn-primary">Trabajo Finalizado</a>
-                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-danger">Cancelar Pedido</a>
                         </div>
                     </div>
 
@@ -94,7 +89,7 @@ and open the template in the editor.
                                 <h5 class="card-header" th:text="${contrato.precio}" style="color:black;"></h5>
                             </div>
 
-                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-danger">Cancelar Pedido</a>
                         </div>
 
 
@@ -110,7 +105,7 @@ and open the template in the editor.
                             </div>
 
                             <a th:href="@{/contrato/contratoSolicitado/__${contrato.id}__}" class="btn btn-primary">Ver Detalles</a>
-                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-danger">Cancelar Pedido</a>
 
                         </div>
 
@@ -127,7 +122,7 @@ and open the template in the editor.
                             </div>
 
                             <a th:href="@{/contrato/contratoSolicitado/__${contrato.id}__}" class="btn btn-primary">Ver Detalles</a>
-                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-primary">Cancelar Pedido</a>
+                            <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-danger">Cancelar Pedido</a>
                         </div>
                     </div>
                 </div>

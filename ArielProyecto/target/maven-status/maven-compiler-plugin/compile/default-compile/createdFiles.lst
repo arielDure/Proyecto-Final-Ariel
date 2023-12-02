@@ -12,6 +12,7 @@ AplicacionServicios\ServiciosApp\controladores\ImagenControlador.class
 AplicacionServicios\ServiciosApp\repositorios\ImagenRepositorio.class
 AplicacionServicios\ServiciosApp\ServiciosAppApplication.class
 AplicacionServicios\ServiciosApp\controladores\ProveedorControlador.class
+AplicacionServicios\ServiciosApp\entidades\ContratoArchivado.class
 AplicacionServicios\ServiciosApp\controladores\PortalAdministrador.class
 AplicacionServicios\ServiciosApp\entidades\Contrato.class
 AplicacionServicios\ServiciosApp\enumeraciones\Sexo.class
@@ -27,3 +28,5 @@ AplicacionServicios\ServiciosApp\controladores\ReseniaControlador.class
 AplicacionServicios\ServiciosApp\SeguridadWeb.class
 AplicacionServicios\ServiciosApp\repositorios\UsuarioRepositorio.class
 AplicacionServicios\ServiciosApp\entidades\Usuario.class
+AplicacionServicios\ServiciosApp\repositorios\ContratoArchivadoRepositorio.class
+AplicacionServicios\ServiciosApp\servicios\ContratoArchivadoServicio.class

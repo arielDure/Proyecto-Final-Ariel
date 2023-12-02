@@ -22,3 +22,10 @@ th {
 .total {
     font-weight: bold;
 }
+
+.containerFooter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}

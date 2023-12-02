@@ -15,9 +15,10 @@
 
     <main>
         <h3>Requisitos del Usuario: <span th:text="${contrato.usuario.nombre}"></span> </h3>
-        <p> Pedido: <span th:text="${contrato.requisitos}"></span></p>
+        <p th:text="${contrato.requisitos}"></p>
+
         <br><br>
-        <form class="row g-3" th:action="@{/contrato/presupuesto}" method="POST">
+        <form class="row g-3" th:action="@{/contrato/presupuesto/__${contrato.id}__}" method="POST">
             <div class="input-group mb-3">
                 <span class="input-group-text">$</span>
                 <input name="precio" type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
@@ -28,11 +29,13 @@
                 <input type="text" class="form-control" name="horasAprox" placeholder="Tiempo aproximado del trabajo"
                     th:value="${horasAprox}">
             </div>
+            <input type="date" name="inicioDelTrabajo">
             <div>
-                <button type="submit" class="btn btn-primary">Enviar <br>presupuesto</button>
-                <a th:href="@{/contrato/rechazar}" class="btn btn-secondary my-2 botonVolver botones">Rechazar</a>
+                <button type="submit" name="accion" value="aceptar" class="btn btn-primary">Enviar <br>presupuesto</button>
+         
             </div>
         </form>
+              <a th:href="@{/contrato/cancelarContrato/__${contrato.id}__}" class="btn btn-danger">Cancelar presupuesto</a>
     </main>
 
     <footer th:replace="/fragments/footer :: footer"></footer>

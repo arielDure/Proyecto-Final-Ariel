@@ -1,15 +1,39 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: montserrat;
+    background: linear-gradient(350deg, #13527c, #c9d4ce);
+    height: 100vh;
+}
+
+
 .imagen img{
     min-width: 7vh;
     max-width: 7vh;
 }
 .vistalista{
+    font-size: 12px;
+    margin-left: 5vh;
+    margin-right: 5vh; 
+}
+
+.container m-5{
+    font-size: 12px;
     margin-left: 5vh;
     margin-right: 5vh;
 }
+
 td{
-    
     text-align: center;
     position: relative;
     width: 10vh;
     height: 10vh;
+    
+}
+
+.containerFooter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
 }
