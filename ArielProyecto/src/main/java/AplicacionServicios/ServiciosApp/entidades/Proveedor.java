@@ -33,6 +33,7 @@ public class Proveedor extends Usuario {
     private Long contactos;
     private String presentacion;
     private String descripcion;
+    private Double promedio;
     
     @OneToMany
     private List<Resenia> resenias;
@@ -40,6 +41,14 @@ public class Proveedor extends Usuario {
 
 
     public Proveedor() {
+    }
+
+    public Double getPromedio() {
+        return promedio;
+    }
+
+    public void setPromedio(Double promedio) {
+        this.promedio = promedio;
     }
     
     public Profesion getProfesion1() {

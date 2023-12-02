@@ -31,10 +31,10 @@ public class Resenia {
     private Integer calificacion;
      
     @OneToOne
-    private Usuario idUsuario;
+    private Usuario usuario;
     
     @OneToOne
-    private Proveedor idProveedor;
+    private Proveedor proveedor;
     
     @Temporal(TemporalType.DATE)
     private Date fecha;
@@ -54,20 +54,20 @@ public class Resenia {
         this.id = id;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Proveedor getIdProveedor() {
-        return idProveedor;
+    public Proveedor getProveedor() {
+        return proveedor;
     }
 
-    public void setIdProveedor(Proveedor idProveedor) {
-        this.idProveedor = idProveedor;
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 
     public String getCuerpo() {

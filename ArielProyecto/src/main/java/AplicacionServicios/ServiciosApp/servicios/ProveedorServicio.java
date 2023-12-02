@@ -5,15 +5,19 @@
  */
 package AplicacionServicios.ServiciosApp.servicios;
 
+import AplicacionServicios.ServiciosApp.entidades.Contrato;
 import AplicacionServicios.ServiciosApp.entidades.Imagen;
 import AplicacionServicios.ServiciosApp.entidades.Proveedor;
+import AplicacionServicios.ServiciosApp.entidades.Resenia;
 import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
 import AplicacionServicios.ServiciosApp.enumeraciones.Rol;
 import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
+import AplicacionServicios.ServiciosApp.repositorios.ContratoRepositorio;
 import AplicacionServicios.ServiciosApp.repositorios.ProveedorRepositorio;
+import AplicacionServicios.ServiciosApp.repositorios.ReseniaRepositorio;
 import AplicacionServicios.ServiciosApp.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,11 +35,20 @@ import java.util.Optional;
 @Service
 public class ProveedorServicio {
 
-    @Autowired
+   @Autowired
     private ProveedorRepositorio proveedorRepositorio;
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+
+    @Autowired
+    private ContratoRepositorio contratoRepositorio;
+
+    @Autowired
+    private ReseniaRepositorio reseniaRepositorio;
+
+    @Autowired
+    private ContratoArchivadoServicio contratoArchivadoServicio;
 
     @Autowired
     private UsuarioServicio usuarioServicio;
@@ -98,7 +111,7 @@ public class ProveedorServicio {
         if (presentacion.isEmpty()) {
             throw new MiExcepcion("la presentacion debe contener algo.");
         }
-        if (presentacion.length() >= 26){
+        if (presentacion.length() >= 180){
             throw new MiExcepcion("La presentacion no puede tener mas de 26 caracteres.");
         }
     }
@@ -106,7 +119,7 @@ public class ProveedorServicio {
     @Transactional
     public void actualizarProovedor(MultipartFile archivo, String idProveedor, String nombre,
             String email, String password, String password2,Profesion profesion,
-            ProfesionExtra profesion2, Long telefono,String presentacion,Sexo sexo, String descripcion) throws MiExcepcion {
+            ProfesionExtra profesion2, Long telefono,String presentacion,Sexo sexo,String descripcion) throws MiExcepcion {
   
         validarActualizarProveedor(archivo, nombre, email, profesion, profesion2, password, password2, telefono);
 
@@ -218,14 +231,16 @@ public class ProveedorServicio {
             usuario.setRol(Rol.USUARIO);
             usuario.setSexo(proveedor.getSexo());
             usuario.setImagen(proveedor.getImagen());
-            borrarProovedorPorId(idProveedor);
+            proveedorRepositorio.delete(proveedor);
+
+            List<Contrato> contratos = contratoRepositorio.buscarPorProveedorId(idProveedor);
+            for (Contrato aux : contratos) {
+                contratoArchivadoServicio.crearContratoArchivado(aux.getId());
+            }
 
             usuarioRepositorio.save(usuario);
 
-        }else{
-            throw new MiExcepcion("id no encontrada");
         }
-
     }
 
      // Método que devuelve una lista  con todas las coincidencias que haya en la base de dato del atributo nombre
@@ -248,5 +263,43 @@ public class ProveedorServicio {
     
      public Proveedor getOne(String id){
        return proveedorRepositorio.getOne(id);
+    }
+     
+     public void sumarContacto(String id){
+
+        Optional<Proveedor> respuesta = proveedorRepositorio.findById(id);
+
+        if(respuesta.isPresent()){
+            Proveedor proveedor = respuesta.get();
+
+            Long cont = proveedor.getContactos();
+
+            proveedor.setContactos(cont + 1);
+
+            proveedorRepositorio.save(proveedor);
+        }
+
+    }
+     
+     public void calcularPromedio(String id){
+
+        int suma = 0;
+        int cont = 0;
+        List<Resenia> resenias = reseniaRepositorio.buscarPorProveedorId(id);
+        for (Resenia aux : resenias) {
+            suma += aux.getCalificacion();
+            cont += 1;
+        }
+
+        double promedio = suma / cont;
+
+        Optional <Proveedor> respuesta = proveedorRepositorio.findById(id);
+
+        if(respuesta.isPresent()){
+            Proveedor proveedor = respuesta.get();
+            proveedor.setPromedio(promedio);
+
+            proveedorRepositorio.save(proveedor);
+        }
     }
 }

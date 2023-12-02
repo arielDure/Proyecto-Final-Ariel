@@ -36,8 +36,8 @@ public class ReseniaServicio {
         
         Resenia resenia = new Resenia();
         
-        resenia.setIdUsuario(usuario);
-        resenia.setIdProveedor(proveedor);
+        resenia.setUsuario(usuario);
+        resenia.setProveedor(proveedor);
         resenia.setCuerpo(cuerpo);
         resenia.setCalificacion(calificacion);
        
@@ -103,7 +103,7 @@ public class ReseniaServicio {
       List<Resenia> resenias= reseniaRepositorio.findAll();
       List<Resenia> reseniasDevolver= new ArrayList();
         for (Resenia resenia : resenias) {
-            if(resenia.getIdUsuario().getId().equals(idUsuario)){
+            if(resenia.getUsuario().getId().equals(idUsuario)){
                 reseniasDevolver.add(resenia);
             }
         }
@@ -114,7 +114,7 @@ public class ReseniaServicio {
       List<Resenia> resenias= reseniaRepositorio.findAll();
       List<Resenia> reseniasDevolver= new ArrayList();
         for (Resenia resenia : resenias) {
-            if(resenia.getIdProveedor().getId().equals(idProveedor)){
+            if(resenia.getProveedor().getId().equals(idProveedor)){
                 reseniasDevolver.add(resenia);
             }
         }

@@ -5,6 +5,7 @@
  */
 package AplicacionServicios.ServiciosApp.servicios;
 
+import AplicacionServicios.ServiciosApp.entidades.Contrato;
 import AplicacionServicios.ServiciosApp.entidades.Imagen;
 import AplicacionServicios.ServiciosApp.entidades.Proveedor;
 import AplicacionServicios.ServiciosApp.entidades.Usuario;
@@ -13,6 +14,8 @@ import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
 import AplicacionServicios.ServiciosApp.enumeraciones.Rol;
 import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
+import AplicacionServicios.ServiciosApp.repositorios.ContratoArchivadoRepositorio;
+import AplicacionServicios.ServiciosApp.repositorios.ContratoRepositorio;
 import AplicacionServicios.ServiciosApp.repositorios.ProveedorRepositorio;
 import AplicacionServicios.ServiciosApp.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +51,15 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private ImagenServicio imagenServicio;
+    
+    @Autowired
+    private ContratoRepositorio contratoRepositorio;
+
+    @Autowired
+    private ContratoArchivadoRepositorio contratoArchivadoRepositorio;
+
+    @Autowired
+    private ContratoArchivadoServicio contratoArchivadoServicio;
 
     @Transactional
     public void crearUsuario(MultipartFile archivo, String nombre, String email, String password, String password2, Sexo sexo) throws MiExcepcion {
@@ -209,15 +221,18 @@ public class UsuarioServicio implements UserDetailsService {
             //hay que hacer toda la logica desde el front santi hijodeperra
             proveedor.setSexo(Sexo.MASCULINO);
             borrarUsuarioPorID(idUsuario);
+            
+            List<Contrato> contratos = contratoRepositorio.buscarPorUsuarioId(idUsuario);
+            for (Contrato aux : contratos) {
+                contratoArchivadoServicio.crearContratoArchivado(aux.getId());
 
+            }
             proveedorRepositorio.save(proveedor);
 
-        }
-
+    }
     }
     
     public void validarClienteAProveedor(Long telefono, String profesion, String profesion2) throws MiExcepcion {
-
         if (telefono == null) {
             throw new MiExcepcion("Debe proveer un numero de telefono celular.");
         }
@@ -268,4 +283,6 @@ public class UsuarioServicio implements UserDetailsService {
         }
         return null;
     }
+    
+    
 }

@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -61,18 +62,22 @@ public class PortalControlador {
          modelo.addAttribute("proveedores", proveedores);
          return "inicio.html";
     }
-    
+  
     @GetMapping("/registrar")
     public String registrar(ModelMap modelo){
-        List<Sexo> sexos = Arrays.asList(Sexo.values());
+        
+        try {
+              List<Sexo> sexos = Arrays.asList(Sexo.values());
         modelo.put("sexos", sexos);
         List<Profesion> profesiones = Arrays.asList(Profesion.values());
         modelo.put("profesiones", profesiones);
         List<ProfesionExtra> profesionesExtra = Arrays.asList(ProfesionExtra.values());
         modelo.put("profesionesExtra", profesionesExtra);
+        } catch (Exception e) {
+            modelo.put("error", "Usuario o contraseña invalida!");
+        }
         return "registro.html";
     }
-    
    
 
     @GetMapping("/login")
@@ -96,11 +101,12 @@ public class PortalControlador {
 
         
     }
-    
-    
-    
-    
-    
+    @GetMapping("/listarProveedores")
+    public String listaProveedores(ModelMap modelo){
+         List<Proveedor> proveedores = proveedorServicio.listarProveedores();
+         modelo.addAttribute("proveedores", proveedores);
+         return "lista_proveedores.html";
+    }
     
     
     

@@ -17,6 +17,9 @@ import java.util.Optional;
 
 @Service
 public class ContratoServicio {
+    
+    @Autowired
+    private ProveedorServicio proveedorServicio;
 
     @Autowired
     private ProveedorRepositorio proveedorRepositorio;
@@ -42,20 +45,17 @@ public class ContratoServicio {
     }
 
     @Transactional
-    public void aceptarContrato(String id, Double precio, Date fechaFinalizacion){
+    public void envioDeProveedorACliente(String id, Double precio, String horasAprox,Date inicioDelTrabajo){
 
         Optional<Contrato> respuesta = contratoRepositorio.findById(id);
 
         if(respuesta.isPresent()){
 
-            Date fechaInicio = new Date();
-
             Contrato contrato = respuesta.get();
             contrato.setPrecio(precio);
-            contrato.setContratoFinalizado(fechaFinalizacion);
-            contrato.setContratoInicio(fechaInicio);
+            contrato.setHorasAprox(horasAprox);
+            contrato.setInicioDelTrabajo(inicioDelTrabajo);
             contrato.setRespuestaProveedor(true);
-            contrato.setActivo(true);
 
             contratoRepositorio.save(contrato);
         }
@@ -64,16 +64,14 @@ public class ContratoServicio {
 
 
     @Transactional
-    public void actualizarContrato(String id, Double precio, Date fechaDeFinalizacion){
+    public void aceptarContrato(String id, boolean confirmacion){
 
         Optional<Contrato> respuesta = contratoRepositorio.findById(id);
 
         if(respuesta.isPresent()){
 
             Contrato contrato = respuesta.get();
-            contrato.setPrecio(precio);
-            contrato.setContratoFinalizado(fechaDeFinalizacion);
-
+            contrato.setRespuestaUsuario(confirmacion);
             contratoRepositorio.save(contrato);
 
         }
@@ -112,20 +110,22 @@ public class ContratoServicio {
 
             if(contrato.getRespuestaProveedor() == false && contrato.getRespuestaUsuario() == false) {
                 contrato.setActivo(false);
+               
             }
+             proveedorServicio.sumarContacto(contrato.getProveedor().getId());
             contratoRepositorio.save(contrato);
         }
     }
     
    
     public List<Contrato> listaContratoProveedor(String idProveedor) {
-        System.out.println("entre a lista");
-        List<Contrato> contratos = contratoRepositorio.listaContratoProveedor(idProveedor);
-        for (Contrato contrato : contratos) {
-            System.out.println(contrato.toString());
-        }
-        return contratos;
+         return contratoRepositorio.listaContratoProveedor(idProveedor);
     }
+    
+     public List<Contrato> listaContratoUsuario(String idUsuario) {
+        return contratoRepositorio.listaContratoUsuario(idUsuario);
+    }
+    
     
     public Contrato getOne(String id){
         return contratoRepositorio.getOne(id);

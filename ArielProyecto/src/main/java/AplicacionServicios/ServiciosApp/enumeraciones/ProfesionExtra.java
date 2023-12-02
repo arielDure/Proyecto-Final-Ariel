@@ -2,6 +2,7 @@ package AplicacionServicios.ServiciosApp.enumeraciones;
 
 public enum ProfesionExtra {
 
+    
     NO,
     ALBANIL,
     CATERING,
@@ -15,5 +16,6 @@ public enum ProfesionExtra {
     PINTOR,
     SEGURIDAD,
     VETERINARIA;
-   
+
+
 }

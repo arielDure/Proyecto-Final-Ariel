@@ -11,6 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  *
  * @author tobia
@@ -33,6 +35,6 @@ public interface ReseniaRepositorio extends JpaRepository<Resenia, String> {
 //    @Query("SELECT u FROM Resenia u WHERE u.id = :id")
 //    public Resenia buscarPorNombreUsuario(@Param("id") String id);
 //    
-//    @Query("SELECT u FROM Resenia u WHERE u.id_proveedor_id = :idProveedor")
-//    public Resenia buscarPorNombreProveedor(@Param("id_proveedor_id") String idProveedor);
+      @Query("SELECT c FROM Resenia c WHERE c.proveedor.id LIKE :proveedor")
+     public List<Resenia> buscarPorProveedorId(@Param("proveedor") String id);
 }

@@ -48,9 +48,9 @@ public class UsuarioControlador {
             modelo.put("sexos", sexos);
             modelo.put("nombre",nombre);
             modelo.put("email",email);
-            return "redirect:../registrar";
+            return "registro.html";
         }  
-           return "redirect:../login";
+           return "login.html";
 
     }
 
@@ -112,7 +112,6 @@ public class UsuarioControlador {
         try {
             
             usuarioServicio.clienteAProveedor(id, profesion, profesion2, telefono, sexo);
-            System.out.println("Entre por aca");
             return "redirect:../../logout";
 
         } catch (Exception e) {

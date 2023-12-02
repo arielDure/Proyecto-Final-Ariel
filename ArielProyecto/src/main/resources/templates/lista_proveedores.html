@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/cartas_proveedor.css">
+    <title>Service-App</title>
+</head>
+
+<body>
+    <div th:replace="/fragments/navbar_all :: div"></div>
+    <div class="container-card">
+        <div class="carta" th:each="proveedor : ${proveedores}">
+            <div class="card-top"></div>
+            <div class="card-body">
+                <div class="imagen">
+                    <img th:src="@{/imagen/perfilProveedor/__${proveedor.id}__}" alt="">
+                </div>
+                <div class="datos">
+                    <h2 th:text="${proveedor.nombre}"></h2>
+                    <h3>★★★☆☆</h3>
+                    <h4>4 reseñas</h4>
+                    <a th:href="@{/proveedor/perfilProveedor/__${proveedor.id}__}" alt="imagen"> Ir al Perfil</a>
+                </div>
+                <div class="contenedor-cartas">
+                    <div class="div-oculto">
+                        <div class="descripcion">
+                            <h2>¿Que ofrezco?</h2>
+                            <h3 th:text="${proveedor.presentacion}"></h3>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h2 th:text="${proveedor.profesion1}"></h2>
+                        <h2 th:unless="${proveedor.profesion2 == T(AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra).NO}"
+                            th:text="${proveedor.profesion2}"></h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+    <div th:replace="/fragments/script :: div"></div>
+</body>
+
+</html>

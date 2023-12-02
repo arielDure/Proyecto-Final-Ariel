@@ -65,9 +65,9 @@ public class ProveedorControlador {
             modelo.put("error", e.getMessage());
             modelo.put("nombre", nombre);
             modelo.put("email", email);
-            return "redirect:/registrar";
+            return "registro.html";
         }
-        return "redirect:/login";
+        return "login.html";
     }
 
     @GetMapping("/actualizarProveedor/{id}")
@@ -87,11 +87,11 @@ public class ProveedorControlador {
     @PostMapping("/actualizandoProveedor/{idProveedor}")
     public String actualizandoProveedor(@RequestParam MultipartFile archivo, @PathVariable String idProveedor, @RequestParam String nombre,
             @RequestParam String email, @RequestParam String password,HttpSession session,
-            @RequestParam String password2, @RequestParam Profesion profesion, @RequestParam String presentacion, @RequestParam String descripcion,
+            @RequestParam String password2, @RequestParam Profesion profesion, @RequestParam String presentacion,@RequestParam String descripcion,
             @RequestParam(required = false) ProfesionExtra profesion2, @RequestParam Long telefono,@RequestParam(required = false) Sexo sexo,ModelMap modelo) {
           Usuario logeado = (Usuario) session.getAttribute("usuariosession");
         try {
-            proveedorServicio.actualizarProovedor(archivo, idProveedor, nombre, email, password, password2, profesion, profesion2, telefono,presentacion,sexo, descripcion);
+            proveedorServicio.actualizarProovedor(archivo, idProveedor, nombre, email, password, password2, profesion, profesion2, telefono,presentacion,sexo,descripcion);
             
         } catch (MiExcepcion ex) {
         

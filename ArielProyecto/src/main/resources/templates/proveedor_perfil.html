@@ -38,6 +38,7 @@
             
             
           <div class="botones">
+             <a th:href="'https://wa.me/54' + ${proveedor.telefono}">Anchor text</a>
                 <a class="btn btn-primary mt-3 botones">Chat</a>
                 <a class="btn btn-primary mt-3 botones" sec:authorize="hasAnyRole('ADMIN','USUARIO')" th:href="@{/contrato/crearContratoUsuario/__${proveedor.id}__}">Contratar</a>
                 <a class="btn btn-primary mt-3 botones" >Trabajo finalizado</a>

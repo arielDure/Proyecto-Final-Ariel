@@ -30,5 +30,5 @@ public interface ProveedorRepositorio extends JpaRepository<Proveedor, String> {
 
     @Query("SELECT u FROM Proveedor u WHERE u.telefono = :telefono")
     public Proveedor buscarProveedorPorTelefono(@Param("telefono") Long telefono);
-
+   
 }

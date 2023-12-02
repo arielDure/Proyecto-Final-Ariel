@@ -4,31 +4,7 @@ body{
     background-color: antiquewhite;
     /*background: linear-gradient(500deg, antiquewhite, whitesmoke);*/
 }
-.fondo{
-    background-image: url(/img/fondo.jpg);
-    background-size:cover;
-    text-align: right;
-    color: rgb(255, 255, 255);
-}
-.titulo{
-    color: rgb(255, 255, 255);
-    text-align:center;
-    font-family:'agbalumo';
-    font-size: 10vh;
-    text-shadow: 2px 2px 4px rgba(200, 0, 0, 1);
-}
-.subtitulo{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align:center;
-    color:rgb(255, 255, 255);
-    font-size: 5vh;
-}
 
-h4{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align:center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
 .containerFooter{
     display: flex;
     justify-content: space-around;
@@ -43,20 +19,7 @@ h4{
     color: rgb(253, 253, 253);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-/*.iconos{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    height: auto;
-    justify-content: center;
-}*/
-/*.plomero{
-    display: flex;
-    justify-content: center;
-}*/
+
 .cards{
     display: flex;
     justify-content: center;
@@ -72,12 +35,6 @@ h4{
     align-items: center;
     justify-content: center;
 }
-/*.imagenPerfil img{
-    display: flex;
-    min-width: 20vh;
-    max-width: 20vh;
-
-}*/
 
 .cardsSub .imagen {
     width: 400px;

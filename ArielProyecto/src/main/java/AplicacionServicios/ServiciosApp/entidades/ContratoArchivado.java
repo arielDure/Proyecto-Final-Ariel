@@ -1,16 +1,21 @@
 package AplicacionServicios.ServiciosApp.entidades;
-import javax.persistence.*;
-import java.util.Date;
+
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.Date;
+
 @Entity
-public class Contrato {
+public class ContratoArchivado {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid",strategy = "uuid2")
     private String id;
 
+    private Date contratoInicio;
     private Date contratoFinalizado;
     private Double precio;
     private Date inicioDelTrabajo;
@@ -20,13 +25,11 @@ public class Contrato {
     private Boolean respuestaProveedor;
     private Boolean respuestaUsuario;
 
-    @OneToOne
-    private Usuario usuario;
+    private String usuario;
 
-    @OneToOne
-    private Proveedor proveedor;
+    private String proveedor;
 
-    public Contrato() {
+    public ContratoArchivado() {
     }
 
     public String getId() {
@@ -35,6 +38,14 @@ public class Contrato {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Date getContratoInicio() {
+        return contratoInicio;
+    }
+
+    public void setContratoInicio(Date contratoInicio) {
+        this.contratoInicio = contratoInicio;
     }
 
     public Date getContratoFinalizado() {
@@ -101,21 +112,19 @@ public class Contrato {
         this.respuestaUsuario = respuestaUsuario;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public Proveedor getProveedor() {
+    public String getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(Proveedor proveedor) {
+    public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
     }
-
-    
 }
