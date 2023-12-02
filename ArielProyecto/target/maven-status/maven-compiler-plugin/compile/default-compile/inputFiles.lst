@@ -1,29 +1,29 @@
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\controladores\ContratoControlador.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\entidades\Usuario.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\servicios\UsuarioServicio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\ProfesionExtra.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\servicios\ImagenServicio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\controladores\PortalAdministrador.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\servicios\ContratoServicio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\controladores\ImagenControlador.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\entidades\Proveedor.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\ServiciosAppApplication.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\entidades\Contrato.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\servicios\ReseniaServicio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\Rol.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ImagenRepositorio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ProveedorRepositorio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\controladores\ProveedorControlador.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\SeguridadWeb.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\controladores\PortalControlador.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ContratoRepositorio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\entidades\Imagen.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ReseniaRepositorio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\controladores\ReseniaControlador.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\Sexo.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\excepciones\MiExcepcion.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\entidades\Resenia.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\controladores\UsuarioControlador.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\servicios\ProveedorServicio.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\Profesion.java
-I:\ArgenProgra\Proyecto Final\Proyecto Final\ServiciosApp\src\main\java\AplicacionServicios\ServiciosApp\repositorios\UsuarioRepositorio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Usuario.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\SeguridadWeb.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\PortalAdministrador.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Imagen.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\ProveedorServicio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\ContratoControlador.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\UsuarioServicio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\Rol.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\ProfesionExtra.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\PortalControlador.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ReseniaRepositorio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ContratoRepositorio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Resenia.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ImagenRepositorio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\excepciones\MiExcepcion.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\Profesion.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Contrato.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\UsuarioControlador.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\ImagenControlador.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\ContratoServicio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\repositorios\ProveedorRepositorio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\entidades\Proveedor.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\ProveedorControlador.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\ReseniaServicio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\ServiciosAppApplication.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\controladores\ReseniaControlador.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\repositorios\UsuarioRepositorio.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\enumeraciones\Sexo.java
+I:\ArgenProgra\Spring\GitHub Desktop\Proyecto-Final-Ariel\ArielProyecto\src\main\java\AplicacionServicios\ServiciosApp\servicios\ImagenServicio.java
