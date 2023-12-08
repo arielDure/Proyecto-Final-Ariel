@@ -80,7 +80,7 @@ public class ProveedorServicio {
         proveedor.setSexo(sexo);
         Imagen imagen = null;
 
-        imagen = imagenServicio.guardar(archivo);
+        imagen = imagenServicio.guardar(archivo, proveedor.getSexo().toString(), proveedor.getRol().toString());
 
         proveedor.setImagen(imagen);
 
@@ -173,7 +173,6 @@ public class ProveedorServicio {
         }
         if (Profesion.valueOf(profesion.toString()).equals(ProfesionExtra.valueOf(profesion2.toString()))){
             throw new MiExcepcion("Las profesiones no pueden coincidir");
-            //hacer div para probarlo ^
 
         }
         if (telefono.equals(null)) {
@@ -183,10 +182,11 @@ public class ProveedorServicio {
 
 
     // Método que devuelve una lista de proveedores - sin especificar la profesión --
-     public List<Proveedor> listarProveedores() {
-        List<Proveedor> proveedor = new ArrayList<>();
-        proveedor = proveedorRepositorio.findAll();
-        return proveedor;
+     public List<Proveedor> listarProveedores(String profesion) {
+         if(profesion!=null){
+        return proveedorRepositorio.buscarProveedorPorProfesion(Profesion.valueOf(profesion));
+         }else
+        return proveedorRepositorio.findAll();
 
     }
 
@@ -286,7 +286,7 @@ public class ProveedorServicio {
      
      @Transactional
      public void calcularPromedio(String id){
-
+        
         int suma = 0;
         int cont = 0;
         List<Resenia> resenias = reseniaRepositorio.buscarPorProveedorId(id);
@@ -306,4 +306,9 @@ public class ProveedorServicio {
             proveedorRepositorio.save(proveedor);
         }
     }
+     
+
+    
+     
+   
 }

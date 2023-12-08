@@ -76,7 +76,7 @@ public class UsuarioServicio implements UserDetailsService {
 
         Imagen imagen = null;
 
-        imagen = imagenServicio.guardar(archivo);
+        imagen = imagenServicio.guardar(archivo, usuario.getSexo().toString(), usuario.getRol().toString());
 
         usuario.setImagen(imagen);
 
@@ -218,7 +218,6 @@ public class UsuarioServicio implements UserDetailsService {
             proveedor.setTelefono(telefono);
             proveedor.setProfesion1(Profesion.valueOf(profesion));
             proveedor.setProfesion2(ProfesionExtra.valueOf(profesion2));
-            //hay que hacer toda la logica desde el front santi hijodeperra
             proveedor.setSexo(Sexo.MASCULINO);
             borrarUsuarioPorID(idUsuario);
             

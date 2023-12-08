@@ -14,7 +14,11 @@
                         <li class="list-group-item" style="background-color: rgba(141, 141, 255, 0);font-family: cursive"><span th:text="${proveedor.profesion1}"></span></li>
                         <li th:unless="${proveedor.profesion2 == T(AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra).NO}" class="list-group-item"style="background-color: rgba(141, 141, 255, 0);font-family: cursive"><span th:text="${proveedor.profesion2}"></span>
                         </li>
-                        <li class="list-group-item"style="background-color: rgba(141, 141, 255, 0);">Calificación: <span></span></li>
+                        <li class="list-group-item"style="background-color: rgba(141, 141, 255, 0);">Calificación: <span><h2 th:if="${proveedor.promedio==1}" style="color: orangered">★☆☆☆☆</h2>
+                        <h2 th:if="${proveedor.promedio==2}" style="color: orangered">★★☆☆☆</h2>
+                        <h2 th:if="${proveedor.promedio==3}" style="color: orangered">★★★☆☆</h2>
+                        <h2 th:if="${proveedor.promedio==4}" style="color: orangered">★★★★☆</h2>
+                        <h2 th:if="${proveedor.promedio==5}" style="color: orangered">★★★★★</h2> </span></li>
                     </ul>
                     <br>
                     <div class="card-body">

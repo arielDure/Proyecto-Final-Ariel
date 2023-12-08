@@ -28,7 +28,7 @@ public class Proveedor extends Usuario {
     @Enumerated(EnumType.STRING)
     private ProfesionExtra profesion2;
 
-    /* figurarnos como asignar mas de un rol en un proveedor. pedir ayuda a primera hora! */
+  
     private Long telefono;
     private Integer contactos;
     private String presentacion;

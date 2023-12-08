@@ -40,6 +40,7 @@ public class ContratoServicio {
         contrato.setProveedor(proveedor);
         contrato.setRequisitos(requisitos);
         contrato.setActivo(true);
+        contrato.setTieneResenia(false);
         
         contratoRepositorio.save(contrato);
     }
@@ -110,8 +111,9 @@ public class ContratoServicio {
 
             if(contrato.getRespuestaProveedor() == true && contrato.getRespuestaUsuario() == true) {
                 contrato.setActivo(false);
-               
+                contrato.setContratoFinalizado(new Date());
             }
+
             proveedorServicio.sumarContacto(contrato.getProveedor().getId());
             contratoRepositorio.save(contrato);
         }

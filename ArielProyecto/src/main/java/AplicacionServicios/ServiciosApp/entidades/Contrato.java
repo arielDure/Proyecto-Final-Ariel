@@ -19,6 +19,8 @@ public class Contrato {
     private Boolean activo;
     private Boolean respuestaProveedor;
     private Boolean respuestaUsuario;
+    private  Boolean tieneResenia;
+
 
     @OneToOne
     private Usuario usuario;
@@ -101,6 +103,14 @@ public class Contrato {
         this.respuestaUsuario = respuestaUsuario;
     }
 
+    public Boolean getTieneResenia() {
+        return tieneResenia;
+    }
+
+    public void setTieneResenia(Boolean tieneResenia) {
+        this.tieneResenia = tieneResenia;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -117,5 +127,9 @@ public class Contrato {
         this.proveedor = proveedor;
     }
 
+    
+   
+    
+    
     
 }

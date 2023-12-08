@@ -2,7 +2,6 @@
 
 body{
     background-color: antiquewhite;
-    /*background: linear-gradient(500deg, antiquewhite, whitesmoke);*/
 }
 
 .containerFooter{
@@ -46,7 +45,6 @@ body{
 }
 
 .cardsSub .imagen img{
-    /* border: 2px solid black; */
     width: 100%;
     height: 100%;
     display: block;
@@ -71,7 +69,6 @@ body{
 }
 
 .carta{
-    /* border: 2px solid black; */
     max-height: 285px;
     width: 80vh;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
@@ -82,7 +79,6 @@ body{
 
 
 .carta .card-body{
-    /*border: 2px solid black;*/
     background: linear-gradient(150deg, #13527c, #c9d4ce);
     display: flex;
     justify-content: center;
@@ -94,7 +90,6 @@ body{
 .carta .card-body .imagen{
     width: 210px;
     height: 200px;
-    /* border: 2px solid black; */
     flex: 1.5;
     margin-left: 20px;
 
@@ -112,7 +107,6 @@ body{
 
 
 .carta .card-body .datos {
-    /* border: 5px solid black; */
     padding-right: 20px;
     border-right: 2px solid black;
     height: 200px;
@@ -122,7 +116,6 @@ body{
 }
 
 .carta .card-body .datos h2{
-    /* border: 2px solid black; */
     margin: 5px 0px 0px 0px;
 
     font-size: 25px;
@@ -130,7 +123,6 @@ body{
 }
 
 .carta .card-body .datos h3{
-    /* border: 2px solid black; */
     margin: 0;
     cursor: context-menu;
     font-size: 30px;
@@ -139,7 +131,6 @@ body{
 }
 
 .carta .card-body .datos h4{
-    /* border: 2px solid black; */
     margin-top: 0;
     font-size: 15px;
     color: rgb(58, 58, 58);
@@ -148,7 +139,6 @@ body{
 
 .carta .card-body .datos a{
     transition: 0.2s;
-    /* border: 2px solid black; */
     display: inline-block;
     padding: 10px 20px;
     font-size: 14px;
@@ -162,11 +152,6 @@ body{
     text-align: center;
 
 }
-
-
-
-
-
 
 .contenedor-cartas {
     position: relative;

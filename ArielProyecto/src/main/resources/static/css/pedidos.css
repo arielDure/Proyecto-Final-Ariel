@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Nova+Square&display=swap');
+
 body{
     background-color: antiquewhite;
-    /*background: linear-gradient(500deg, antiquewhite, whitesmoke);*/
+    text-align: center;
 }
 .cartas{
     display: flex;
     gap:50px; 
     justify-content: center;
     flex-wrap: wrap; 
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 .containerFooter{
@@ -14,4 +18,20 @@ body{
     justify-content: space-around;
     align-items: center;
 
+}
+.pedidosNull p{
+    display: inline-block;
+    font-family: 'Nova Square';
+    font-size: 75px;
+    border: 2px solid;
+    border-style: outset;
+    margin: auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3) ;
+    padding: 2vh;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+}
+.pie{
+    margin-top: 5vh;
+    border-top: 1px solid;
 }

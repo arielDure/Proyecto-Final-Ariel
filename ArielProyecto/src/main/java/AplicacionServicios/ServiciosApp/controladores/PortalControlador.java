@@ -6,12 +6,10 @@
 package AplicacionServicios.ServiciosApp.controladores;
 
 import AplicacionServicios.ServiciosApp.entidades.Proveedor;
-import AplicacionServicios.ServiciosApp.entidades.Resenia;
 import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
 import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
-import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
 import AplicacionServicios.ServiciosApp.servicios.ProveedorServicio;
 import AplicacionServicios.ServiciosApp.servicios.ReseniaServicio;
 import AplicacionServicios.ServiciosApp.servicios.UsuarioServicio;
@@ -30,6 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -58,8 +57,10 @@ public class PortalControlador {
     //Agregue lista de proveedores para mostrar en el index (Ariel Duré)
      @GetMapping("/")
     public String index(ModelMap modelo){
-         List<Proveedor> proveedores = proveedorServicio.listarProveedores();
+        String profesionFiltro = null;
+         List<Proveedor> proveedores = proveedorServicio.listarProveedores(profesionFiltro);
          modelo.addAttribute("proveedores", proveedores);
+         
          return "inicio.html";
     }
     
@@ -105,8 +106,11 @@ public class PortalControlador {
     }
     
     @GetMapping("/listarProveedores")
-    public String listaProveedores(ModelMap modelo){
-         List<Proveedor> proveedores = proveedorServicio.listarProveedores();
+    public String listaProveedores(ModelMap modelo,@Param("profesionFiltro") String profesionFiltro){
+         List<Proveedor> proveedores = proveedorServicio.listarProveedores(profesionFiltro);
+         List<Profesion> profesiones = Arrays.asList(Profesion.values());
+         modelo.put("profesiones", profesiones);
+         modelo.addAttribute("profesionFiltro" , profesionFiltro);
          modelo.addAttribute("proveedores", proveedores);
          return "lista_proveedores.html";
     }

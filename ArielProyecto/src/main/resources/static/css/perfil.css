@@ -1,5 +1,4 @@
 
-
 .principal{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -15,10 +14,6 @@
     align-items: center;
 }
 
-
-
-
-
 body{
     min-height: 100vh;
     display: flex;
@@ -28,7 +23,6 @@ body{
 }
 
 main {
-    /* border: 3px red solid; */
     min-width: 170vh;
     max-width: 175vh;
     margin-top: 40px;
@@ -39,7 +33,6 @@ main {
 }
 
 .principal {
-    /* border: 3px blue solid; */
     height: 50vh;
     display: flex;
     gap: 100px;
@@ -57,7 +50,6 @@ main {
 }
 
 .imagen img{
-    /* border: 2px solid black; */
     width: 100%;
     height: 100%;
     display: block;
@@ -65,14 +57,9 @@ main {
 
 }
 
-.container-datos{
-    /* border: 5px solid green; */
-}
-
 .container-datos .datos{
     min-width: 900px;
     max-width: 1000px;
-    /* border: 2px solid purple; */
 }
 
 .miPerfil{
@@ -115,12 +102,6 @@ main {
     justify-content: center;
     gap: 5px;
 }
-
-
-
-
-
-
 
 .separacion{
     margin-top: 50px;

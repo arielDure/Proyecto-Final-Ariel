@@ -54,7 +54,7 @@ public class PortalAdministrador {
 
     @GetMapping("/listarProveedores")
     public String listarProveedores(ModelMap modelo) {
-        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
+        List<Proveedor> proveedores = proveedorServicio.listarProveedores(null);
         modelo.addAttribute("proveedores", proveedores);
 
         return "proveedor_list.html";

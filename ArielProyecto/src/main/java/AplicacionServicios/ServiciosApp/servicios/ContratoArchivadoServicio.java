@@ -54,7 +54,7 @@ public class ContratoArchivadoServicio {
 
     }
 
-        public  List<ContratoArchivado> listarContratosArchivados() {
+    public  List<ContratoArchivado> listarContratosArchivados() {
             List<ContratoArchivado> contratosArchivados = new ArrayList<>();
             contratosArchivados = contratoArchivadoRepositorio.findAll();
 

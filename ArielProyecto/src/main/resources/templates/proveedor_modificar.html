@@ -28,7 +28,6 @@
                                     <option th:each="sexo:${sexos}"
                                             th:value="${sexo}"
                                             th:text="${sexo}">
-
                                     </option>
                                 </select>
                             </div>
@@ -67,16 +66,16 @@
                                 </select>
                             </div>
                             <div class="form-group my-3">
-                                <input type="number" class="form-control" name="telefono" placeholder="TELEEFONO"
+                                <input type="number" class="form-control" name="telefono" placeholder="TELEFONO"
                                     th:value="${proveedor.telefono}">
                             </div>
-                            <h5 style="color:grey;">Ingrese una presentación</h5>
+                            <h5 style="color:grey;">En qué te destacás</h5>
                             <div>
-                                <textarea name="presentacion" class="form-control" cols="10" rows="5" th:value="${proveedor.presentacion}" placeholder="Presentación"></textarea>
+                                <textarea type="text" name="presentacion" class="form-control" cols="10" rows="5" th:text="${proveedor.presentacion}" th:field="${proveedor.presentacion}" placeholder="Presentación"></textarea>
                             </div>
-                            <h5 style="color:grey;">Ingrese una descripción</h5>
+                            <h5 style="color:grey;">Ingresá una descripción</h5>
                             <div>
-                                <textarea name="descripcion" class="form-control" cols="20" rows="10" th:value="${proveedor.descripcion}" placeholder="Descripción"></textarea>
+                                <textarea type="text" name="descripcion" class="form-control" cols="20" rows="10" th:text="${proveedor.descripcion}" th:field="${proveedor.descripcion}" placeholder="Descripción"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3 botones">Aceptar</button>
 

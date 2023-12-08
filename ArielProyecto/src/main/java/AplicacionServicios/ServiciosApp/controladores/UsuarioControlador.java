@@ -5,11 +5,15 @@
  */
 package AplicacionServicios.ServiciosApp.controladores;
 
+import AplicacionServicios.ServiciosApp.entidades.Contrato;
+import AplicacionServicios.ServiciosApp.entidades.Proveedor;
 import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.enumeraciones.Profesion;
 import AplicacionServicios.ServiciosApp.enumeraciones.ProfesionExtra;
 import AplicacionServicios.ServiciosApp.enumeraciones.Sexo;
 import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
+import AplicacionServicios.ServiciosApp.servicios.ContratoServicio;
+import AplicacionServicios.ServiciosApp.servicios.ProveedorServicio;
 import AplicacionServicios.ServiciosApp.servicios.UsuarioServicio;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +36,13 @@ public class UsuarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
+    @Autowired
+    private ProveedorServicio proveedorServicio;
+    
+    @Autowired
+    private ContratoServicio contratoServicio;
+
+
    @PostMapping("/registroUsuario")
     public String registroUsuario(MultipartFile archivo, @RequestParam String nombre,
             @RequestParam String email, @RequestParam String password, @RequestParam String password2, ModelMap modelo, Sexo sexo) {
@@ -50,7 +61,7 @@ public class UsuarioControlador {
             modelo.put("email",email);
             return "registro.html";
         }
-           return "login.html";
+        return "redirect:/login";
 
     }
 
@@ -105,7 +116,7 @@ public class UsuarioControlador {
 
     }
     
-    //INUTILIZABLE HASTA TENER LA LOGICA DE BORRAR TODOS LOS CONTATOS QUE ESTAN VINCULADOS AL PROVEEDOR
+   
 
     @PostMapping("/usuarioAproveedor/{id}")
     public String cambioRol(@PathVariable String id, @RequestParam(required = false) String error, ModelMap modelo, @RequestParam(required = false) String profesion, @RequestParam(required = false) String profesion2, @RequestParam Long telefono, @RequestParam(required = false) Sexo sexo) {
@@ -136,9 +147,14 @@ public class UsuarioControlador {
 
     }
 
-    @GetMapping("/cargarResenia")
-
-    public String cargarResenia() {
+    @GetMapping("/cargarResenia/{id}")
+    public String cargarResenia(@PathVariable String id, ModelMap modelo, HttpSession session) {
+        Contrato contrato = contratoServicio.getOne(id);
+        modelo.put("contrato", contrato);
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        modelo.put("usuario", usuario);
+        Proveedor proveedor = proveedorServicio.getOne(contrato.getProveedor().getId());
+        modelo.put("proveedor", proveedor);
         return "resenia.html";
     }
 

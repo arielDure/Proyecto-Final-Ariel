@@ -23,20 +23,14 @@
             <tbody th:each="resenia : ${resenias}"> 
                     <tr>
                        
-                        <!-- no fucniona todavia  -->
+                   
                         <td th:text="${resenia.fecha}"></td>
                         <td th:text="${resenia.idUsuario.nombre}"></td>
                         <td th:text="${resenia.calificacion}"></td>
                         <td th:text="${resenia.cuerpo}"></td>
                         <td th:text="${resenia.idProveedor.nombre}"></td>
                        <td th:text="${resenia.id}"></td>
-                   <!--     <td>
-                            <a th:href= "@{/admin/resenia/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i>Reseñas</a>
-                        </td>
-                        <td>
-                            <a th:href= "@{/admin/modificarRol/__${usuario.id}__}"><i class="fas fa-feather-alt"></i>Modificar</a>
-                        </td>
-  -->
+ 
                     </tr>
 
                 </tbody> 

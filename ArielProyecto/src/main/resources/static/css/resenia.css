@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 .resenia {
-    background-image: url(/img/fondo_formulario.avif);
-    background-size: cover;
+    background: linear-gradient(150deg, #13527c, #c9d4ce);
     color: white;
     display: flex;
     align-items: center;
@@ -33,4 +33,13 @@
     justify-content: space-around;
     align-items: center;
 
+}
+
+.user-name-style{
+    font-family: 'agbalumo';
+    color: black ;
+}
+
+body{
+    background-color: antiquewhite;
 }

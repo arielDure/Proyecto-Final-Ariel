@@ -5,10 +5,12 @@
  */
 package AplicacionServicios.ServiciosApp.servicios;
 
+import AplicacionServicios.ServiciosApp.entidades.Contrato;
 import AplicacionServicios.ServiciosApp.entidades.Proveedor;
 import AplicacionServicios.ServiciosApp.entidades.Resenia;
 import AplicacionServicios.ServiciosApp.entidades.Usuario;
 import AplicacionServicios.ServiciosApp.excepciones.MiExcepcion;
+import AplicacionServicios.ServiciosApp.repositorios.ContratoRepositorio;
 import AplicacionServicios.ServiciosApp.repositorios.ReseniaRepositorio;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +30,9 @@ public class ReseniaServicio {
 
     @Autowired
     private ReseniaRepositorio reseniaRepositorio;
+    
+    @Autowired
+    private ContratoRepositorio contratoRepositorio;
 
     @Transactional
     public void crearResenia(Usuario usuario, Proveedor proveedor, String cuerpo, Integer calificacion) throws MiExcepcion{
@@ -99,14 +104,25 @@ public class ReseniaServicio {
         }
     }
     
-//    public List<Resenia> buscarPorUsuarioId(String usuario){
-//        reseniaRepositorio.listarPorIdUsuario(usuario);
-//    }
-//    
     public List<Resenia> buscarPorProveedorId(String idProveedor){
       
         List<Resenia> resenias = reseniaRepositorio.buscarPorProveedorId(idProveedor);
         
         return resenias;
+    }
+    
+    @Transactional
+    public void cambiarEstadoDeTieneResenia(String id){
+       Optional <Contrato> respuesta = contratoRepositorio.findById(id);
+       
+        if (respuesta.isPresent()) {
+            
+            Contrato contrato = respuesta.get();
+            
+            contrato.setTieneResenia(true);
+            
+            contratoRepositorio.save(contrato);
+        }
+       
     }
 }
